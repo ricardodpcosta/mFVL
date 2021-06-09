@@ -1,0 +1,58 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage{kpfonts}
+\usepackage[left=3cm,right=2cm,top=3cm,bottom=3cm]{geometry}
+\usepackage{float}
+\usepackage{adjustbox}
+\usepackage{booktabs}
+\usepackage{multirow}
+\newcommand\x{\times}
+\begin{document}
+In this tests are considered 4 types of combinations:
+\begin{itemize}
+\item $c1$
+\begin{center}
+\includegraphics[width=.75\textwidth]{images/c1.pdf}
+\end{center}
+\item $c2$
+\begin{center}
+\includegraphics[width=.75\textwidth]{images/c2.pdf}
+\end{center}
+\item $c3$
+\begin{center}
+\includegraphics[width=.75\textwidth]{images/c3.pdf}
+\end{center}
+\item $c4$
+\begin{center}
+\includegraphics[width=.75\textwidth]{images/c4.pdf}
+\end{center}
+\end{itemize}
+\pagebreak
+\section*{$\epsilon=0$ -- uniform mesh}
+\input{../test_c1_25_07_17/output/tables/uniform_h_0_c1}
+\input{../test_c2_25_07_17/output/tables/uniform_h_0_c2}
+
+%%%%%
+\section*{$\epsilon=\frac{h^2}{2}$ -- uniform mesh}
+\input{../test_c1_25_07_17/output/tables/uniform_h_2_2_c1}
+\input{../test_c2_25_07_17/output/tables/uniform_h_2_2_c2}
+\input{../test_c3_25_07_17/output/tables/uniform_h_2_2_c3}
+\input{../test_c4_25_07_17/output/tables/uniform_h_2_2_c4}
+
+%%%%%
+\section*{$\epsilon=\frac{h}{2}$ -- uniform mesh}
+\input{../test_c1_25_07_17/output/tables/uniform_h_2_c1}
+\input{../test_c2_25_07_17/output/tables/uniform_h_2_c2}
+\input{../test_c3_25_07_17/output/tables/uniform_h_2_c3}
+\input{../test_c4_25_07_17/output/tables/uniform_h_2_c4}
+
+
+
+\end{document}

@@ -1,0 +1,29 @@
+\begin{table}[H]
+\centering
+\caption{Numerical results of pure diffusion for $\phi(x)=\exp(x)$, $\kappa(x)=1$, and $u(x)=0$ (c2; uniform mesh; $\epsilon=0$).}
+\begin{tabular}{@{}l c c c l c c l c c l c c@{}}
+\toprule
+ & $I$ & cond(A) & $A^{-1}\geq 0$ &  E$_{c,1}$ & O$_{c,1}$ && E$_1$ & O$_1$ && E$_{\infty}$ & O$_{\infty}$\\
+\midrule
+\multirow{2}{*}{$\mathbb{P}_{1}$}
+ & 10 & 1.54E$+$02 & $\x$ & 8.54E$-$02 & --- && 7.55E$-$01 & --- && 1.85E$+$00 & ---\\
+ & 20 & 1.51E$+$05 & $\x$ & 2.28E$-$02 & 1.90 && 1.70E$+$02 & $\uparrow$ && 5.08E$+$02 & $\uparrow$\\
+\midrule
+\multirow{2}{*}{$\mathbb{P}_{2}$}
+ & 10 & 9.76E$+$01 & $\x$ & 6.48E$-$03 & --- && 5.01E$-$03 & --- && 1.10E$-$02 & ---\\
+ & 20 & 3.86E$+$02 & $\checkmark$ & 9.18E$-$04 & 2.82 && 1.30E$-$03 & 1.94 && 3.22E$-$03 & 1.77\\
+\midrule
+\multirow{2}{*}{$\mathbb{P}_{3}$}
+ & 10 & 1.29E$+$02 & $\checkmark$ & 3.02E$-$04 & --- && 3.15E$-$05 & --- && 7.63E$-$05 & ---\\
+ & 20 & 5.17E$+$02 & $\checkmark$ & 1.86E$-$05 & 4.02 && 1.54E$-$06 & 4.36 && 5.01E$-$06 & 3.93\\
+\midrule
+\multirow{2}{*}{$\mathbb{P}_{4}$}
+ & 10 & 1.88E$+$02 & $\checkmark$ & 3.54E$-$05 & --- && 4.08E$-$06 & --- && 9.67E$-$06 & ---\\
+ & 20 & 7.50E$+$02 & $\checkmark$ & 1.19E$-$06 & 4.90 && 7.72E$-$07 & 2.40 && 1.84E$-$06 & 2.39\\
+\midrule
+\multirow{2}{*}{$\mathbb{P}_{5}$}
+ & 10 & 2.00E$+$02 & $\checkmark$ & 5.69E$-$06 & --- && 7.61E$-$07 & --- && 1.43E$-$06 & ---\\
+ & 20 & 7.98E$+$02 & $\checkmark$ & 8.96E$-$08 & 5.99 && 6.61E$-$09 & 6.85 && 2.08E$-$08 & 6.10\\
+\bottomrule
+\end{tabular}
+\end{table}

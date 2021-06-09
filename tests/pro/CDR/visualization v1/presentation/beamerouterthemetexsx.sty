@@ -1,0 +1,21 @@
+\mode<presentation>
+\usepackage{xcolor}
+\definecolor{slide_tile_color}{RGB}{43, 41, 55}
+% Frame title
+\defbeamertemplate*{frametitle}{texsx}[1][]
+{
+  \begin{beamercolorbox}[wd=\paperwidth,ht=1.1650cm]{frametitle} 
+  \begin{tikzpicture}
+  \useasboundingbox (0,0) rectangle(\the\paperwidth,\the\paperheight);
+  \fill[slide_tile_color] (0,0) rectangle(\the\paperwidth,1.2);
+  \fill[gray] (0,-\paperheight) rectangle(.95\paperwidth,-8.15);
+   \ifx\insertframesubtitle\@empty%
+      {\node[anchor=west, white,font=\large] at (0,0.61){\textbf{\insertframetitle}};}
+      \else%
+      {\node[anchor= west, white,font=\large] at (0,0.81){\textbf{\insertframetitle}};%
+       \node[anchor= west, white,font=\small] at (0,0.41){\insertframesubtitle};}%
+      \fi
+  \end{tikzpicture}
+  \end{beamercolorbox}
+}
+\mode<all>

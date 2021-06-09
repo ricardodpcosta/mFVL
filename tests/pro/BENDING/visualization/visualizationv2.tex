@@ -1,0 +1,210 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{array,booktabs}
+\usepackage[none]{hyphenat}
+\usepackage{geometry}
+\usepackage{graphicx}
+\geometry{margin=2.5cm}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section] % reset theorem numbering for each chapter
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition} % definition numbers are dependent on theorem numbers
+\newtheorem{exmp}[thm]{Example} % same for example numbers
+%\usepackage{cmbright}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Biharmonic Tests}
+\lhead{\leftmark}
+\rfoot{\thepage}
+\author{}
+\title{}
+\begin{document}
+\tableofcontents
+\listoftables
+
+\dotfill
+
+In this document we distinguish three schemes:
+\begin{itemize}
+\item PRO1 --- this is considered the ``old'' method because we aren't using the least squares with the constrains. To calculate the $\widehat{\mathcal{R}}$ matrix (matrix of the coefficients) we use $\widehat{\mathcal{R}}=\text{pinv}(A)\times B$
+\item PRO2 --- in this scheme, to calculate the $\widehat{\mathcal{R}}$ matrix we resort to the least squares with constrains and the degree of the reconstruction $\widehat{\psi}_1$ and $\widehat{\psi}_I$ is equal to the degree setted;
+\item PRO3 --- in this scheme, to calculate the $\widehat{\mathcal{R}}$ matrix we resort to the least squares with constrains and the degree of the reconstruction $\widehat{\psi}_1$ and $\widehat{\psi}_I$ is equal to the degree setted plus:
+	\begin{itemize}
+	\item in 01\_01 problems, degree+1
+	\item in 02\_02 problems, degree+2
+	\item in 01\_23 problems, degree+1 at the left and degree+3 at the right.
+	\end{itemize}
+\end{itemize}
+
+\pagebreak
+\section{01\_01}
+\begin{exmp}
+\label{Example:PRO:bending:01_01_glob3v2}
+In this tests we consider:
+\begin{itemize}
+\item $\psi(x)=x^4$
+\item $\psi_\text l=0$
+\item $\psi_\text r=1$
+\item $\psi_\text{ll}=0$
+\item $\psi_\text{rr}=4$
+\item $g(x)=-24$
+\end{itemize}
+\end{exmp}
+\input{../table_01_01_glob3_pro1.tex}
+\input{../table_01_01_glob3_pro2.tex}
+\input{../table_01_01_glob3_pro3.tex}
+\pagebreak
+
+\begin{exmp}
+\label{Example:PRO:bending:01_01_glob1v2}
+In this tests we consider:
+\begin{itemize}
+\item $\psi(x)=\exp(x)$
+\item $\psi_\text l=1$
+\item $\psi_\text r=e$
+\item $\psi_\text{ll}=1$
+\item $\psi_\text{rr}=e$
+\item $g(x)=-\exp(x)$
+\end{itemize}
+\end{exmp}
+\input{../table_01_01_glob1_pro1.tex}
+\input{../table_01_01_glob1_pro2.tex}
+\input{../table_01_01_glob1_pro3.tex}
+\pagebreak 
+
+\begin{exmp}
+\label{Example:PRO:bending:01_01_glob2v2}
+In this tests we consider:
+\begin{itemize}
+\item $\psi(x)=-\exp(x)+x^3(3-e)+x^2(2e-5)+x+1$
+\item $\psi_\text l=0$
+\item $\psi_\text r=0$
+\item $\psi_\text{ll}=0$
+\item $\psi_\text{rr}=0$
+\item $g(x)=\exp(x)$
+\end{itemize}
+\end{exmp}
+\input{../table_01_01_glob2_pro1.tex}
+\input{../table_01_01_glob2_pro2.tex}
+\input{../table_01_01_glob2_pro3.tex}
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{02\_02}
+
+\begin{exmp}
+\label{Example:PRO:bending:02_02_glob3v2}
+In this tests we consider:
+\begin{itemize}
+\item $\psi(x)=x^4$
+\item $\psi_\text l=0$
+\item $\psi_\text r=1$
+\item $M_\text l=0$
+\item $M_\text r=-12$
+\item $g(x)=-24$
+\end{itemize}
+\end{exmp}
+%\input{../table_02_02_glob3_pro1.tex}
+%\input{../table_02_02_glob3_pro2.tex}
+%\input{../table_02_02_glob3_pro3.tex}
+\pagebreak
+
+\begin{exmp}
+\label{Example:PRO:bending:02_02_glob6v2}
+In this tests we consider:
+\begin{itemize}
+\item $\psi(x)=\exp(x)$
+\item $\psi_\text l=1$
+\item $\psi_\text r=e$
+\item $M_\text l=-1$
+\item $M_\text r=-e$
+\item $g(x)=-\exp(x)$
+\end{itemize}
+\end{exmp}
+%\input{../table_02_02_glob6_pro1.tex}
+%\input{../table_02_02_glob6_pro2.tex}
+%\input{../table_02_02_glob6_pro3.tex}
+\pagebreak
+
+\begin{exmp}
+\label{Example:PRO:bending:02_02_glob2v2}
+In this tests we consider:
+\begin{itemize}
+\item $\psi(x)=-\exp(x)+\left(\frac{e-1}{6}\right)x^3+\frac{x^2}{2}+\left(\frac{5e-8}{6}\right)x+1$
+\item $\psi_\text l=0$
+\item $\psi_\text r=0$
+\item $M_\text l=0$
+\item $M_\text r=0$
+\item $g(x)=\exp(x)$
+\end{itemize}
+\end{exmp}
+%\input{../table_02_02_glob2_pro1.tex}
+%\input{../table_02_02_glob2_pro2.tex}
+%\input{../table_02_02_glob2_pro3.tex}
+\pagebreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{01\_23}
+
+\begin{exmp}
+\label{Example:PRO:bending:01_23_glob3v2}
+In this tests we consider:
+\begin{itemize}
+\item $\psi(x)=x^4$
+\item $\psi_\text l=0$
+\item $\psi_\text{ll}=0$
+\item $M_\text r=-12$
+\item $G=-24$
+\item $g(x)=24$
+\end{itemize}
+\end{exmp}
+%\input{../table_01_23_glob3_pro1.tex}
+%\input{../table_01_23_glob3_pro2.tex}
+%\input{../table_01_23_glob3_pro3.tex}
+\pagebreak
+
+\begin{exmp}
+\label{Example:PRO:bending:01_23_glob1v2}
+In this tests we consider:
+\begin{itemize}
+\item $\psi(x)=\exp(x)$
+\item $\psi_\text l=1$
+\item $\psi_\text{ll}=1$
+\item $M_\text r=-\text e$
+\item $G=-\text e$
+\item $g(x)=-\exp(x)$
+\end{itemize}
+\end{exmp}
+%\input{../table_01_23_glob1_pro1.tex}
+%\input{../table_01_23_glob1_pro2.tex}
+%\input{../table_01_23_glob1_pro3.tex}
+\pagebreak
+
+\begin{exmp}
+\label{Example:PRO:bending:01_23_glob2v2}
+In this tests we consider:
+\begin{itemize}
+\item $\psi(x)=-\exp(x)+x^3\left(\frac{\text e-1}{6}\right)+\frac{x^2}{2}+x+1$
+\item $\psi_\text l=0$
+\item $\psi_\text{ll}=0$
+\item $M_\text r=0$
+\item $G=1$
+\item $g(x)=\exp(x)$
+\end{itemize}
+\end{exmp}
+%\input{../table_01_23_glob2_pro1.tex}
+%\input{../table_01_23_glob2_pro2.tex}
+%\input{../table_01_23_glob2_pro3.tex}
+\pagebreak
+
+\end{document}
+% end of file

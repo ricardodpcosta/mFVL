@@ -1,0 +1,85 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{array,booktabs}
+\usepackage[none]{hyphenat}
+\usepackage{geometry}
+\usepackage{graphicx}
+\geometry{margin=2.5cm}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section] % reset theorem numbering for each chapter
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition} % definition numbers are dependent on theorem numbers
+\newtheorem{exmp}[thm]{Example} % same for example numbers
+%\usepackage{cmbright}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Biharmonic Test}
+\lhead{\leftmark}
+\rfoot{\thepage}
+\author{}
+\title{}
+\begin{document}
+
+
+In this tests we consider:
+\begin{itemize}
+\item $\psi(x)=\sin(\pi x)$
+\item $\psi_\text l=0$
+\item $\psi_\text{ll}=\pi$
+\item $\psi_\text r=0$
+\item $\psi_\text{rr}=-\pi$
+\item $g(x)=-\pi^4\sin(\pi x)$
+\item the different PRO schemes are:
+	\begin{itemize}
+	\item PRO1 --- weak ($R=A^\dagger B$) and degree $d$
+	\item PRO2 --- strong (constrained least squares) and degree $d$
+	\end{itemize}
+\end{itemize}
+\input{../../global_tables/table_01_01_glob7_pro1.tex} % falta escolher o nome do glob
+\input{../../global_tables/table_01_01_glob7_pro2.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+In this tests we consider:
+\begin{itemize}
+\item $\psi(x)=\sin(2\pi x)$
+\item $\psi_\text l=0$
+\item $\psi_\text{ll}=2\pi$
+\item $\psi_\text r=0$
+\item $\psi_\text{rr}=2\pi$
+\item $g(x)=-16\pi^4\sin(2\pi x)$
+\item the different PRO schemes are:
+	\begin{itemize}
+	\item PRO1 --- weak ($R=A^\dagger B$) and degree $d$
+	\item PRO2 --- strong (constrained least squares) and degree $d$
+	\end{itemize}
+\end{itemize}
+\input{../../global_tables/table_01_01_glob8_pro1.tex} % falta escolher o nome do glob
+\input{../../global_tables/table_01_01_glob8_pro2.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+In this tests we consider:
+\begin{itemize}
+\item $\psi(x)=\sin(3\pi x)$
+\item $\psi_\text l=0$
+\item $\psi_\text{ll}=3\pi$
+\item $\psi_\text r=0$
+\item $\psi_\text{rr}=-3\pi$
+\item $g(x)=-81\pi^4\sin(3\pi x)$
+\item the different PRO schemes are:
+	\begin{itemize}
+	\item PRO1 --- weak ($R=A^\dagger B$) and degree $d$
+	\item PRO2 --- strong (constrained least squares) and degree $d$
+	\end{itemize}
+\end{itemize}
+\input{../../global_tables/table_01_01_glob9_pro1.tex} % falta escolher o nome do glob
+\input{../../global_tables/table_01_01_glob9_pro2.tex}
+\end{document}
+% end of file

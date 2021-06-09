@@ -1,0 +1,380 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage{kpfonts}
+\usepackage[left=3cm,right=2cm,top=3cm,bottom=3cm]{geometry}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{dsfont}
+\usepackage{empheq}
+\newcommand{\MatR}[2]{{\mathcal{M}}_{#1\times #2}(\mathds{R})}
+\DeclareMathOperator*{\argmin}{argmin}
+\begin{document}
+\section{Formulation and Discretization of the Problem of Pure Diffusion}
+
+\begin{itemize}
+\item Formulation:
+\begin{alignat*}{3}
+-(\kappa\phi')' & = s && \quad \text{ in } \Omega=]x_\frac{1}{2},x_{I+\frac{1}{2}}[\\
+\phi & =\phi_{\text{lf},0} && \quad \text{ at } x=x_\frac{1}{2}\\
+-\kappa\phi' & =\phi_{\text{rg},1} && \quad \text{ at } x=x_{I+\frac{1}{2}}
+\end{alignat*}
+
+\item Mesh:
+
+\includegraphics[width=\textwidth]{images/mesh_notation}
+
+\item Discretization:
+\begin{align*}
+&-(\kappa\phi')'= s\\
+&\int_{C_i}(-(\kappa\phi')')\,\text dx=\int_{C_i}s\,\text dx\\
+&-(\kappa\phi')\big|_{x_{i-\frac{1}{2}}}^{x_{i+\frac{1}{2}}}=\int_{C_i}s\,\text dx\\
+&-\left(\mathbb{F}_{\text D,i+\frac{1}{2}}-\mathbb{F}_{\text D,i-\frac{1}{2}}\right)=\mathbb{S}_i, \quad i=1,\ldots,I
+\end{align*}
+\end{itemize}
+
+\section{Reconstructions and Matrices}
+\begin{itemize}
+\item At $x_\frac{1}{2}$:
+\[
+\phi_{\text d,\frac{1}{2}}(x)=\sum_{\alpha=0}^\text d \mathcal{R}_{\frac{1}{2},\alpha}(x-x_\frac{1}{2})^\alpha
+\]
+
+$\widehat{\mathcal{R}}_{\frac{1}{2}}=\left(\widehat{\mathcal{R}}_{\frac{1}{2},0},\ldots,\widehat{\mathcal{R}}_{\frac{1}{2},\text d}\right)^\text T$ is the solution of the constrained linear least squares problem
+
+\begin{minipage}[c]{0.55\textwidth}
+\begin{empheq}[box=\fbox]{align*}
+\min & \quad
+\sum_{j\in S_\frac{1}{2}} \omega_j\left [\frac{1}{h_j} \int_{C_j} \phi_{\text d,\frac{1}{2}}(x)\,\text dx -\phi_j \right]^2\\
+\text{s.t.} & \quad \phi_{\text d,\frac{1}{2}}(x_\frac{1}{2})=\phi_{\text{lf},0}
+\end{empheq}
+\end{minipage}
+\begin{minipage}[c]{0.025\textwidth}
+$\Leftrightarrow$
+\end{minipage}
+\begin{minipage}[c]{0.35\textwidth}
+\begin{empheq}[box=\fbox]{align*}
+\min & \quad
+\|A_\frac{1}{2} \mathcal R_\frac{1}{2} - B_\frac{1}{2}\|_2^2\\
+\text{s.t.} & \quad C_\frac{1}{2} \mathcal R_\frac{1}{2}=D_\frac{1}{2}
+\end{empheq}
+\end{minipage}
+
+So,
+\begin{align*}
+&\omega_j\left[\frac{1}{h_j}\int_{C_j}\phi_{\text d,\frac{1}{2}}\,\text dx-\phi_j\right]=0\\
+\Leftrightarrow &\omega_j\left[\frac{1}{h_j}\int_{C_j}\phi_{\text d,\frac{1}{2}}\,\text dx\right]=\omega_j\phi_j\\\Leftrightarrow &\omega_j\left[\frac{1}{h_j}\int_{C_j}
+\left(\sum_{\alpha=0}^\text d\mathcal{R}_{\frac{1}{2},\alpha}(x-x_{\text{lf}})^\alpha\right)\,\text dx\right]=\omega_j\phi_j\\
+\Leftrightarrow &\omega_j\left[\frac{1}{h_j}\int_{C_j}
+\left(\mathcal{R}_{\frac{1}{2},0}(x-x_{\text{lf}})^0+\mathcal{R}_{\frac{1}{2},1}(x-x_{\text{lf}})^1+\cdots+\mathcal{R}_{\frac{1}{2},\text d}(x-x_{\text{lf}})^\text d\right)\,\text dx\right]=\omega_j\phi_j\\
+\Leftrightarrow &\omega_j\left[
+\mathcal{R}_{\frac{1}{2},0}\underbrace{\left(\frac{1}{h_j}\int_{C_j}(x-x_{\text{lf}})^0\,\text dx\right)}_{A}+\mathcal{R}_{\frac{1}{2},1}\left(\frac{1}{h_j}\int_{C_j}(x-x_{\text{lf}})^1\,\text dx\right)+\cdots+\mathcal{R}_{\frac{1}{2},\text d}\left(\frac{1}{h_j}\int_{C_j}(x-x_{\text{lf}})^\text d\,\text dx\right)
+\right]=\underbrace{\omega_j\phi_j}_B
+\end{align*}
+and,
+\begin{align*}
+& \phi_{\text d,\frac{1}{2}}(x_{\text{lf}})=\phi_{\text{lf},0}\\
+\Leftrightarrow&\sum_{\alpha=0}^{\text d}\mathcal{R}_{\frac{1}{2},\alpha}(x_{\text{lf}}-x_{\text{lf}})^\alpha
+=\phi_{\text{lf},0}\\
+\Leftrightarrow&\mathcal{R}_{\frac{1}{2},0}\underbrace{(x_{\text{lf}}-x_{\text{lf}})^0}_C+\mathcal{R}_{\frac{1}{2},1}(x_{\text{lf}}-x_{\text{lf}})^1+\cdots+\mathcal{R}_{\frac{1}{2},\text d}(x_{\text{lf}}-x_{\text{lf}})^\text d=\underbrace{\phi_{\text{lf},0}}_{D}\\
+\end{align*}
+
+
+
+Then, the matrices are:
+\begin{align*}
+& A_\frac{1}{2}=[A_{\frac{1}{2},j\alpha}]\in \MatR{n_S}{(\text d+1)}=\omega_j\frac{1}{h_j}\int_{C_j}(x-x_{\frac{1}{2}})^\alpha\,\text dx\\
+& B_\frac{1}{2}=[B_{\frac{1}{2},j}]\in \MatR{n_S}{1}=\omega_j\phi_j\\
+& C_\frac{1}{2}=[C_{\frac{1}{2},j\alpha}]\in \MatR{1}{(\text d+1)}=
+\begin{cases}
+1 & \text{if}\quad \alpha=0\\
+0 & \text{if}\quad \alpha=1,\ldots,\text d
+\end{cases}\\
+& D_\frac{1}{2}=[D_{\frac{1}{2},j}]\in \MatR{1}{1}=\phi_{\text{lf},0}
+\end{align*}
+%
+\item At $x_\frac{3}{2},\ldots,x_{I-\frac{1}{2}}$:
+\[
+\phi_{\text d,i+\frac{1}{2}}(x)=\sum_{\alpha=0}^\text d \mathcal{R}_{i+\frac{1}{2},\alpha}(x-x_{i+\frac{1}{2}})^\alpha, 
+\]
+
+
+$\widetilde{\mathcal{R}}_{i+\frac{1}{2}}=\left(\widetilde{\mathcal{R}}_{i+\frac{1}{2},0},\ldots,\widetilde{\mathcal{R}}_{i+\frac{1}{2},\text d}\right)^\text T$ is the solution of the constrained linear least squares problem
+
+\begin{minipage}[c]{0.55\textwidth}
+\begin{empheq}[box=\fbox]{align*}
+\min & \quad
+\sum_{j\in S_{i+\frac{1}{2}}} \omega_j\left [\frac{1}{h_j} \int_{C_j} \phi_{\text d,i+\frac{1}{2}}(x)\,\text dx -\phi_j \right]^2
+\end{empheq}
+\end{minipage}
+
+
+%\[
+%\widetilde \phi_{\text d,i+\frac{1}{2}}=
+%\min_{\widetilde{\mathcal{R}}_{i+\frac{1}{2},0},\>\ldots,\>\widetilde{\mathcal{R}}_{i+\frac{1}{2},\text d}}\sum_{j\in \widetilde S_{i+\frac{1}{2}}}\omega_j\left[\frac{1}{h_j}\int_{C_j}\phi_{\text d,i+\frac{1}{2}}-\phi_j\right]^2
+%\]
+%
+%\[
+%\phi_{\text d,i+\frac{1}{2}}=\sum_{\alpha=0}^{\text d}\mathcal{R}_{i+\frac{1}{2},\alpha}(x-x_{i+\frac{1}{2}})^\alpha,i=1,\ldots,I-1
+%\]
+So,
+\begin{align*}
+&\omega_j\left[\frac{1}{h_j}\int_{C_j}\phi_{\text d,i+\frac{1}{2}}\,\text dx-\phi_j\right]=0\\
+\Leftrightarrow &\omega_j\left[\frac{1}{h_j}\int_{C_j}\phi_{\text d,i+\frac{1}{2}}\,\text dx\right]=\omega_j\phi_j\\\Leftrightarrow &\omega_j\left[\frac{1}{h_j}\int_{C_j}
+\left(\sum_{\alpha=0}^\text d\mathcal{R}_{i+\frac{1}{2},\alpha}(x-x_{i+\frac{1}{2}})^\alpha\right)\,\text dx\right]=\omega_j\phi_j\\
+\Leftrightarrow &\omega_j\left[\frac{1}{h_j}\int_{C_j}
+\left(\mathcal{R}_{i+\frac{1}{2},0}(x-x_{i+\frac{1}{2}})^0+\mathcal{R}_{i+\frac{1}{2},1}(x-x_{i+\frac{1}{2}})^1+\cdots+\mathcal{R}_{i+\frac{1}{2},\text d}(x-x_{i+\frac{1}{2}})^\text d\right)\,\text dx\right]=\omega_j\phi_j\\
+\Leftrightarrow &\omega_j\left[
+\mathcal{R}_{i+\frac{1}{2},0}\underbrace{\left(\frac{1}{h_j}\int_{C_j}(x-x_{i+\frac{1}{2}})^0\,\text dx\right)}_{A}+\mathcal{R}_{i+\frac{1}{2},1}\left(\frac{1}{h_j}\int_{C_j}(x-x_{i+\frac{1}{2}})^1\,\text dx\right)+\cdots+\mathcal{R}_{i+\frac{1}{2},\text d}\left(\frac{1}{h_j}\int_{C_j}(x-x_{i+\frac{1}{2}})^\text d\,\text dx\right)
+\right]=\underbrace{\omega_j\phi_j}_B
+\end{align*}
+
+
+
+
+
+Then, the matrices are:
+\begin{align*}
+& A_{i+\frac{1}{2}}=[A_{i+\frac{1}{2},j\alpha}]\in \MatR{n_S}{(\text d+1)}=\omega_j\frac{1}{h_j}\int_{C_j}(x-x_{i+\frac{1}{2}})^\alpha\,\text dx\\
+& B_{i+\frac{1}{2}}=[B_{i+\frac{1}{2},j}]\in \MatR{n_S}{1}=\omega_j\phi_j
+\end{align*}
+%
+\item At $x_{I+\frac{1}{2}}$:
+\[
+\phi_{\text d,I+\frac{1}{2}}=\sum_{\alpha=0}^{\text d}\mathcal{R}_{I+\frac{1}{2},\alpha}(x-x_{\text{rg}})^\alpha
+\]
+
+$\widehat{\mathcal{R}}_{I+\frac{1}{2}}=\left(\widehat{\mathcal{R}}_{I+\frac{1}{2},0},\ldots,\widehat{\mathcal{R}}_{I+\frac{1}{2},\text d}\right)^\text T$ is the solution of the constrained linear least squares problem
+
+\begin{minipage}[c]{0.55\textwidth}
+\begin{empheq}[box=\fbox]{align*}
+\min & \quad
+\sum_{j\in S_{I+\frac{1}{2}}} \omega_j\left [\frac{1}{h_j} \int_{C_j} \phi_{\text d,I+\frac{1}{2}}(x)\,\text dx -\phi_j \right]^2\\
+\text{s.t.} & \quad -\kappa(x_{I+\frac{1}{2}}+\epsilon)\phi_{\text d,I+\frac{1}{2}}(x_{I+\frac{1}{2}}+\epsilon)=\phi_{\text{rg},1}
+\end{empheq}
+\end{minipage}
+\begin{minipage}[c]{0.025\textwidth}
+$\Leftrightarrow$
+\end{minipage}
+\begin{minipage}[c]{0.45\textwidth}
+\begin{empheq}[box=\fbox]{align*}
+\min & \quad
+\|A_{I+\frac{1}{2}} \mathcal R_{I+\frac{1}{2}} - B_{I+\frac{1}{2}}\|_2^2\\
+\text{s.t.} & \quad C_{I+\frac{1}{2}} \mathcal R_{I+\frac{1}{2}}=D_{I+\frac{1}{2}}
+\end{empheq}
+\end{minipage}
+
+%\begin{align*}
+%\widehat \phi_{\text d,I+\frac{1}{2}}=
+%\begin{cases}
+%\min_{\widehat{\mathcal{R}}_{I+\frac{1}{2},0},\>\ldots,\>\widehat{\mathcal{R}}_{I+\frac{1}{2},\text d}}\sum_{j\in \widehat S_{I+\frac{1}{2}}}\omega_j\left[\frac{1}{h_j}\int_{C_j}\phi_{\text d,I+\frac{1}{2}}-\phi_j\right]^2\\
+%\text{s.t.}\quad -\kappa(x_{\text{rg}}+\epsilon)\phi_{\text d,I+\frac{1}{2}}'(x_{\text{rg}}+\epsilon)=\phi_{\text{rg},1}
+%\end{cases}
+%\end{align*}
+%
+%\[
+%\phi_{\text d,I+\frac{1}{2}}=\sum_{\alpha=0}^{\text d}\mathcal{R}_{I+\frac{1}{2},\alpha}(x-x_{\text{rg}})^\alpha
+%\]
+%\[
+%\phi_{\text d,I+\frac{1}{2}}'=\sum_{\alpha=1}^{\text d}\mathcal{R}_{I+\frac{1}{2},\alpha}\alpha(x-x_{\text{rg}})^{\alpha-1}
+%\]
+
+So,
+\begin{align*}
+&\omega_j\left[\frac{1}{h_j}\int_{C_j}\phi_{\text d,I+\frac{1}{2}}\,\text dx-\phi_j\right]=0\\
+\Leftrightarrow &\omega_j\left[\frac{1}{h_j}\int_{C_j}\phi_{\text d,I+\frac{1}{2}}\,\text dx\right]=\omega_j\phi_j\\\Leftrightarrow &\omega_j\left[\frac{1}{h_j}\int_{C_j}
+\left(\sum_{\alpha=0}^\text d\mathcal{R}_{I+\frac{1}{2},\alpha}(x-x_{\text{rg}})^\alpha\right)\,\text dx\right]=\omega_j\phi_j\\
+\Leftrightarrow &\omega_j\left[\frac{1}{h_j}\int_{C_j}
+\left(\mathcal{R}_{I+\frac{1}{2},0}(x-x_{\text{rg}})^0+\mathcal{R}_{I+\frac{1}{2},1}(x-x_{\text{rg}})^1+\cdots+\mathcal{R}_{I+\frac{1}{2},\text d}(x-x_{\text{rg}})^\text d\right)\,\text dx\right]=\omega_j\phi_j\\
+\Leftrightarrow &\omega_j\left[
+\mathcal{R}_{I+\frac{1}{2},0}\underbrace{\left(\frac{1}{h_j}\int_{C_j}(x-x_{\text{rg}})^0\,\text dx\right)}_{A}+\mathcal{R}_{I+\frac{1}{2},1}\left(\frac{1}{h_j}\int_{C_j}(x-x_{\text{rg}})^1\,\text dx\right)+\cdots+\mathcal{R}_{I+\frac{1}{2},\text d}\left(\frac{1}{h_j}\int_{C_j}(x-x_{\text{rg}})^\text d\,\text dx\right)
+\right]=\underbrace{\omega_j\phi_j}_B
+\end{align*}
+and,
+\begin{align*}
+& -\kappa(x_{\text{rg}}+\epsilon)\phi_{\text d,I+\frac{1}{2}}(x_{\text{rg}}+\epsilon)=\phi_{\text{lf},1}\\
+\Leftrightarrow&\sum_{\alpha=0}^{\text d}\mathcal{R}_{{I+\frac{1}{2}},\alpha}\alpha(x_{\text{rg}}+\epsilon-x_{\text{rg}})^{\alpha-1}
+=-\frac{\phi_{\text{lf},1}}{\kappa(x_{\text{rg}}+\epsilon)}\\
+\Leftrightarrow& \mathcal{R}_{{I+\frac{1}{2}},0}\times 0+\mathcal{R}_{{I+\frac{1}{2}},1}\times 1\times(\epsilon)^{0}+\mathcal{R}_{{I+\frac{1}{2}},2}\times 2\times(\epsilon)^{1}+\cdots+
+\mathcal{R}_{{I+\frac{1}{2}},\text d}\times \underbrace{\text d\times(\epsilon)^{\text d-1}}_C
+=\underbrace{-\frac{\phi_{\text{lf},1}}{\kappa(x_{\text{rg}}+\epsilon)}}_D
+\end{align*}
+
+
+The matrices are:
+\begin{align*}
+& A_{I+\frac{1}{2}}=[A_{I+\frac{1}{2},j\alpha}]\in \MatR{n_S}{(\text d+1)}=\omega_j\frac{1}{h_j}\int_{C_j}(x-x_{I+\frac{1}{2}})^\alpha\,\text dx\\
+& B_{I+\frac{1}{2}}=[B_{I+\frac{1}{2},j}]\in \MatR{n_S}{1}=\omega_j\phi_j\\
+& C_{I+\frac{1}{2}}=[C_{I+\frac{1}{2},j\alpha}]\in \MatR{1}{(\text d+1)}=
+\begin{cases}
+0 & \text{if}\quad \alpha=0\\
+1 & \text{if}\quad \alpha=1\\
+\alpha\epsilon^{\alpha-1} & \text{if}\quad\alpha=2,\ldots,d\\
+\end{cases}\\
+& D_{I+\frac{1}{2}}=[D_{I+\frac{1}{2},j}]\in \MatR{1}{1}=-\frac{\phi_{\text{rg},1}}{\kappa(x_{I+\frac{1}{2}}+\epsilon)}
+\end{align*}
+
+
+
+
+
+
+
+
+
+
+%\begin{align*}
+%&A^{I+\frac{1}{2}}_{j\alpha}=\omega_j\frac{1}{h_j}\int_{C_j}(x-x_{\text{rg}})^{\alpha-1}\text dx\\
+%&B^{I+\frac{1}{2}}_{j\alpha}=\omega_j\phi_j\\
+%&C^{I+\frac{1}{2}}_{j\alpha}=
+%\begin{cases}
+%0 & \text{if}\quad \alpha=1\\
+%1 & \text{if}\quad \alpha=2\\
+%\alpha\epsilon^{\alpha-2} & \text{if}\quad\alpha=3,\ldots,d+1\\
+%\end{cases}\\
+%&D^{I+\frac{1}{2}}_{j\alpha}=-\frac{\phi_{\text{rg},1}}{\kappa(x_{\text{rg}}+\epsilon)}
+%\end{align*}
+\end{itemize}
+\pagebreak
+%%=====================================================
+\section{Results}
+\subsection{Type II - Dirichlet + Neumann}
+In this tests we will consider:
+\begin{itemize}
+\item $\overline{\Omega}=[0,1+\epsilon]$
+\item $\psi(x)=\exp(x)$
+\item $\psi(0)=1$
+\item $\varphi_{\text{n2}}=-\exp(1+\epsilon)$
+\item reconstructions of degree $d$ and $d+1$
+%\item $\psi(1+\epsilon)=-\exp(1+\epsilon)$
+\end{itemize}
+
+With $\epsilon=0$:
+\begin{center}
+degree $d$
+\end{center}
+\input{tables/uniform_0_d_v2}
+
+\pagebreak
+With $\epsilon=h^2$:\\
+\begin{minipage}{0.5\textwidth}
+\begin{center}
+degree $d$
+\end{center}
+\input{tables/uniform_h_square_d_v2}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+\begin{center}
+degree $d+1$
+\end{center}
+\input{tables/uniform_h_square_d_plus_1_v2}
+\end{minipage}
+
+\pagebreak
+%======================================
+With $\epsilon=\frac{h}{2}$:\\
+\begin{minipage}{0.5\textwidth}
+\begin{center}
+degree $d$
+\end{center}
+\input{tables/uniform_h_over_2_d_v2}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+\begin{center}
+degree $d+1$
+\end{center}
+\input{tables/uniform_h_over_2_d_plus_1_v2}
+\end{minipage}
+
+\pagebreak
+%%========================================
+With $\epsilon=h$:\\
+\begin{minipage}{0.5\textwidth}
+\begin{center}
+degree $d$
+\end{center}
+\input{tables/uniform_h_d_v2}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+\begin{center}
+degree $d+1$
+\end{center}
+\input{tables/uniform_h_d_plus_1_v2}
+\end{minipage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+
+
+
+\subsection{Type I - Dirichlet + Dirichlet}
+In this tests we will consider:
+\begin{itemize}
+\item $\overline{\Omega}=[0,1+\epsilon]$
+\item $\psi(x)=\exp(x)$
+\item $\psi(0)=1$
+\item $\psi(1+\epsilon)=\exp(1+\epsilon)$
+\item reconstructions of degree $d$ and $d+1$
+%\item $\psi(1+\epsilon)=-\exp(1+\epsilon)$
+\end{itemize}
+
+With $\epsilon=0$:
+\begin{center}
+degree $d$
+\end{center}
+\input{tables/uniform_0_d_dir}
+
+\pagebreak
+With $\epsilon=h^2$:\\
+\begin{minipage}{0.5\textwidth}
+\begin{center}
+degree $d$
+\end{center}
+\input{tables/uniform_h_square_d_dir}
+\end{minipage}
+%\begin{minipage}{0.5\textwidth}
+%\begin{center}
+%degree $d+1$
+%\end{center}
+%\input{tables/uniform_h_square_d_plus_1_dir}
+%\end{minipage}
+
+\pagebreak
+%======================================
+With $\epsilon=\frac{h}{2}$:\\
+\begin{minipage}{0.5\textwidth}
+\begin{center}
+degree $d$
+\end{center}
+\input{tables/uniform_h_over_2_d_dir}
+\end{minipage}
+%\begin{minipage}{0.5\textwidth}
+%\begin{center}
+%degree $d+1$
+%\end{center}
+%\input{tables/uniform_h_over_2_d_plus_1_dir}
+%\end{minipage}
+
+\pagebreak
+%%========================================
+With $\epsilon=h$:\\
+\begin{minipage}{0.5\textwidth}
+\begin{center}
+degree $d$
+\end{center}
+\input{tables/uniform_h_d_dir}
+\end{minipage}
+%\begin{minipage}{0.5\textwidth}
+%\begin{center}
+%degree $d+1$
+%\end{center}
+%\input{tables/uniform_h_d_plus_1_dir}
+%\end{minipage}
+
+\end{document}

@@ -1,0 +1,59 @@
+\documentclass[12pt,tikz,landscape]{standalone}
+
+\usepackage[portuguese]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+%\usepackage{txfonts} %Times font
+\usepackage{amssymb}
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathreplacing}
+%\usepackage{kpfonts}
+
+\usepackage[sans]{dsfont}
+%\usepackage{cmbright}
+\usepackage{lmodern}
+\begin{document}
+\begin{tikzpicture}
+\coordinate (A) at (1,0);
+\coordinate (B) at (7,0);
+\coordinate (C) at (13.5,0);
+% horizontal lines
+\draw[line width=0.25mm]        (0,0) --(2,0);
+\draw[dashed,line width=0.25mm] (2,0) --(5,0);
+\draw[line width=0.25mm]        (5,0) --(9,0);
+\draw[dashed,line width=0.25mm] (9,0) --(11,0);
+\draw[line width=0.25mm]        (11,0) --(16,0);
+\draw[dashed,line width=0.25mm,red]        (16,0) --(17,0);
+% vertical lines
+\draw[line width=0.25mm] (0,0.5) -- (0,-0.5) node[below] {$x_{\text{lf}}\equiv x_\frac{1}{2}$};
+\draw[line width=0.25mm] (2,0.5) -- (2,-0.5) node[below] {$x_\frac{3}{2}$};
+\draw[line width=0.25mm] (5,0.5) -- (5,-0.5) node[below] {$x_{i-\frac{1}{2}}$};
+\draw[line width=0.25mm] (9,0.5) -- (9,-0.5) node[below] {$x_{i+\frac{1}{2}}$};
+\draw[line width=0.25mm] (11,0.5) -- (11,-0.5) node[below] {$x_{I-\frac{1}{2}}$};
+\draw[line width=0.25mm] (16,0.5) -- (16,-0.5) node[below] {$x_{\text{rg}}\equiv x_{I+\frac{1}{2}}$};
+% nodes
+\draw[fill=black] (A) circle (0.05) node[above] {$C_1$} node[below] {$m_1$};
+\draw[fill=black] (B) circle (0.05) node[above] {$C_i$} node[below] {$m_i$};
+\draw[fill=black] (C) circle (0.05) node[above] {$C_I$} node[below] {$m_I$};
+\draw[fill=red] (17,0) circle (0.1);
+% curly brackets
+\draw [decorate,decoration={brace,amplitude=5pt},xshift=-4pt,yshift=0pt]
+(16.15,0.05) -- (17,0.05) node [midway,above,yshift=5pt] 
+{\footnotesize $\epsilon$};
+% reconstructions
+\draw (0,0.5) node[above] {$\widehat \psi_\frac{1}{2}$};
+\draw (2,0.5) node[above] {$\widetilde \psi_\frac{3}{2}$};
+\draw (5,0.5) node[above] {$\widetilde \psi_{i-\frac{1}{2}}$};
+\draw (9,0.5) node[above] {$\widetilde \psi_{i+\frac{1}{2}}$};
+\draw (11,0.5) node[above] {$\widetilde \psi_{I-\frac{1}{2}}$};
+\draw (16,0.5) node[above] {$\widehat \psi_{I+\frac{1}{2}}$};
+% vertical lines
+\draw[->,line width=0.5mm] (0,-2) -- (0,-1);
+\draw[line width=.25mm] (0,-2) node[below] {$\psi(x_\frac{1}{2})=\psi_{\text{lf},0}$};
+%
+\draw[->,line width=0.5mm] (17,-2) -- (17,-.2);
+\draw[line width=.25mm] (17,-2) node[below] {$-\psi'(x_{I+\frac{1}{2}}+\epsilon)=\psi_{\text{rg},1}$};
+\end{tikzpicture}
+
+\end{document}

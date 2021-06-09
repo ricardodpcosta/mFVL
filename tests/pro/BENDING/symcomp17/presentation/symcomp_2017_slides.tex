@@ -1,0 +1,362 @@
+\documentclass[10pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+% for double screen presentation
+%\usepackage{pgfpages}
+%\setbeamertemplate{note page}[sqeeze]
+%\setbeameroption{show notes on second screen=right}
+
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{amsmath,times,empheq}
+\usepackage{fontawesome} % itemize symbols
+\title{Very High Order Finite Volume Approximation
+for the 1D Biharmonic Operator}
+\date{}
+\author[Hélder]{\underline{Hélder C. Barbosa}, Ricardo Costa, Gaspar J. Machado}
+\institute{\parbox{\linewidth}{\centering%
+Centre of Mathematics, University of Minho, Guimarães, Portugal\endgraf\bigskip\tiny{
+Financed by National Funds and by FCT within the Project FCT - UID/MAT/00013/2013}}}
+
+\usetheme{texsx}
+
+\usefonttheme[onlymath]{serif}
+\usepackage{empheq}
+\newcommand{\MatR}[2]{{\cal M}_{#1\times #2}(\mathbb R)}
+\newcommand{\VarCount}[3]{#1=#2,\,\ldots,\,#3}
+
+\begin{document}
+ 
+%%=============================================================
+\begin{frame}
+\titlepage
+\end{frame}
+%\note{
+%}
+%%=============================================================
+
+%%=============================================================
+\begin{frame}
+\frametitle{Outline}
+\tableofcontents
+\end{frame}
+%%=============================================================
+
+ 
+%%=============================================================
+%\begin{frame}
+%\frametitle{01\_01 Tests} 
+%\framesubtitle{The proof uses \textit{reductio ad absurdum}.} 
+%\begin{exampleblock}{132}
+%There is no largest prime number. 
+%\end{exampleblock} 
+%\begin{definition}
+%There is no largest prime number. 
+%\end{definition}
+%\begin{enumerate} 
+%\item<1-| alert@1> Suppose $p$ were the largest prime number. 
+%\item<2-> Let $q$ be the product of the first $p$ numbers. 
+%\item<3-> Then $q+1$ is not divisible by any of them. 
+%\item<1-> But $q + 1$ is greater than $1$, thus divisible by some prime
+%number not in the first $p$ numbers.
+%\item<1-| alert@1> Suppose $p$ were the largest prime number. 
+%\item<2-> Let $q$ be the product of the first $p$ numbers. 
+%\item<3-> Then $q+1$ is not divisible by any of them. 
+%\item<1-> But $q + 1$ is greater than $1$, thus divisible by some prime
+%number not in the first $p$ numbers.
+%\end{enumerate}
+%\end{frame}
+%%=============================================================
+
+%%=============================================================
+%\begin{frame}
+%\frametitle{A longer title}
+%\section{A longer title}
+%\begin{itemize}
+%\item[\faHandORight] 1
+%\item[\faHandORight] s
+%\item[\faFacebook] 3
+%\end{itemize}
+%\begin{alertblock}{Conclusion}
+%Simmons Hall $\not=$ Simmons Dormitory.
+%\end{alertblock}
+%\end{frame}
+%%=============================================================
+
+\section{Biharmonic Operator}
+\subsection{Formulation}
+%%=============================================================
+\begin{frame}
+\frametitle{Biharmonic Operator}
+\framesubtitle{Formulation}
+
+
+\begin{center}
+\begin{tcolorbox}[text width=5.5cm]
+\begin{alignat*}{3}
+-\mu\psi^{(4)} & = f && \quad \text{ in } \Omega=]x_\frac{1}{2},x_{I+\frac{1}{2}}[\\
+\psi & =\psi_{\text{lf},0} && \quad \text{ at } x=x_\frac{1}{2}\\
+\psi^{(1)} & =\psi_{\text{lf},1} && \quad \text{ at } x=x_\frac{1}{2}\\
+\psi & =\psi_{\text{rg},0} && \quad \text{ at } x=x_{I+\frac{1}{2}}\\
+\psi^{(1)} & =\psi_{\text{rg},1} && \quad \text{ at } x=x_{I+\frac{1}{2}}
+\end{alignat*}
+\end{tcolorbox}
+\end{center}
+where,
+\begin{itemize}
+\item if $\mu$ is constant $\rightarrow -\mu \psi^{\text{(4)}}=f$ in $\Omega=]x_\frac{1}{2},x_{I+\frac{1}{2}}[$
+\end{itemize}
+\end{frame}
+%%=============================================================
+
+\subsection{Discretization}
+%%=============================================================
+\begin{frame}
+\frametitle{Biharmonic Operator}
+\framesubtitle{Discretization}
+
+\begin{itemize}
+\item Integrating the equation in the cells of the mesh $c_i$, $\VarCount{i}{1}{I}$
+\end{itemize}
+\begin{flalign*}
+&-\mu \psi^{(4)}=f\Rightarrow -\int_{c_i}\mu \psi^{(4)}\mathsf{d}x=\int_{c_i}f\mathsf{d}x\Leftrightarrow&\\
+&-\underbrace{(\mu \psi^{(3)}\vert_{x_{i+\frac{1}{2}}}}_{\mathcal{T}_{i+\frac{1}{2}}}-\underbrace{\mu \psi^{(3)}\vert_{x_{i-\frac{1}{2}}}}_{\mathcal{T}_{i-\frac{1}{2}}})=\int_{c_i}f\mathsf{d}x\Leftrightarrow&
+\end{flalign*}
+\begin{center}
+\begin{tcolorbox}[text width=5.3cm,on line]
+\centering
+$-(\mathcal{T}_{i+\frac{1}{2}}-\mathcal{T}_{i-\frac{1}{2}})=h_if_i, \quad i=1,\ldots,I$
+\end{tcolorbox}
+\end{center}
+\begin{itemize}
+\item Goal: approximate $\psi^{\text{(3)}}\left(x_{i+\frac{1}{2}}\right)$, $\VarCount{i}{0}{I}$
+\item PRO method (\textbf{P}olynomial \textbf{R}econstruction \textbf{O}perator)
+\end{itemize}
+\end{frame}
+%=============================================================
+
+\section{Polynomial Reconstructions}
+\subsection{Left Boundary}
+%=============================================================
+\begin{frame}
+\frametitle{Polynomial Reconstructions}
+\framesubtitle{Left Boundary (i)}
+\begin{itemize}
+\item Conservation of $\psi(x_\frac{1}{2})=\psi_{\text{lf},0}$
+$$\psi_{\mathsf{d},\frac{1}{2}}(x)=\sum_{\alpha=0}^\mathsf{d} \widehat{\mathcal R}_{\frac{1}{2},\alpha} (x-x_\frac{1}{2})^\alpha
+$$
+\item Coefficients $\widehat{\mathcal R}_\frac{1}{2}=(\widehat{\mathcal R}_{\frac{1}{2},0},\ldots,\widehat{\mathcal R}_{\frac{1}{2},\mathsf d})^T$ is the solution of the constrained linear least squares problem
+\end{itemize}
+\begin{minipage}[c]{0.65\textwidth}\scriptsize
+\begin{empheq}[box=\fbox]{align*}
+\min_{\widehat{\mathcal R}_{\frac{1}{2},0},\ldots,\widehat{\mathcal R}_{\frac{1}{2},\mathsf d}} & \quad
+\sum_{j\in\widehat S_\frac{1}{2}} \omega_j\left [\frac{1}{h_j} \int_{c_j} \psi_{\mathsf{d},\frac{1}{2}}(x)\mathsf dx -\psi_j \right]^2\\
+\text{s.t.} & \quad \psi_{\mathsf{d},\frac{1}{2}}(x_\frac{1}{2})=\psi_{\text{lf},0}
+\end{empheq}
+\end{minipage}
+\begin{minipage}[c]{0.025\textwidth}
+$\Leftrightarrow$
+\end{minipage}
+\begin{minipage}[c]{0.475\textwidth}\scriptsize
+\begin{empheq}[box=\fbox]{align*}
+\min_{\widehat{\mathcal R}_{\frac{1}{2},0},\ldots,\widehat{\mathcal R}_{\frac{1}{2},\mathsf d}} & \quad
+\|A_\frac{1}{2} \widehat{\mathcal R}_\frac{1}{2} - B_\frac{1}{2}\|_2^2\\
+\text{s.t.} & \quad C_\frac{1}{2} \widehat{\mathcal R}_\frac{1}{2}=D_\frac{1}{2}
+\end{empheq}
+\end{minipage}
+\end{frame}
+%=============================================================
+
+%=============================================================
+\begin{frame}
+\frametitle{Polynomial Reconstructions}
+\framesubtitle{Left Boundary (ii)}
+\begin{itemize}
+\item Where the matrices,
+\end{itemize}
+\begin{align*}
+&A_\frac{1}{2}=[A_{\frac{1}{2},j\alpha}]\in\MatR{n_S}{(\mathsf{d}+1)}, A_{\frac{1}{2},j\alpha}=\omega_j\frac{1}{h_j}\int_{c_j}(x-x_\frac{1}{2})^{\alpha-1}\mathsf dx\\
+&B_\frac{1}{2}=[B_{\frac{1}{2},j}]\in\MatR{n_S}{1}, B_{\frac{1}{2},j}=\omega_j\psi_j\\
+&C_\frac{1}{2}=[C_{\frac{1}{2},j\alpha}]\in\MatR{1}{(\mathsf{d}+1)}, C_{\frac{1}{2},j\alpha}=
+\begin{cases}
+1 & \text{if $\alpha=1$}\\
+0 & \text{if $\alpha=2,\ldots,\mathsf{d}+1$}
+\end{cases}\\
+&D_\frac{1}{2}=[D_{\frac{1}{2},j}]\in\MatR{1}{1}, D_{\frac{1}{2},j}=\psi_{\text{lf},0}
+\end{align*}
+\begin{itemize}
+\item The procedure for the right boundary is similar
+\end{itemize}
+\end{frame}
+%=============================================================
+
+\subsection{First Cell}
+%=============================================================
+\begin{frame}
+\frametitle{Polynomial Reconstructions}
+\framesubtitle{First Cell $c_1$ (i)}
+\begin{itemize}
+\item Conservation of $\psi_1$ and ``strong'' conservation of $\psi^{(1)}(x_\frac{1}{2})=\psi_{\text{lf},1}$
+$$\psi_{\mathsf{d},1}(x)=\sum_{\alpha=0}^\mathsf{d} \widehat{\mathcal R}_{1,\alpha}(x-m_1)^\alpha
+$$
+\item Coefficients $\widehat{\mathcal R}_1=(\widehat{\mathcal R}_{1,0},\ldots,\widehat{\mathcal R}_{1,\mathsf d})^T$ is the solution of the constrained linear least squares problem
+\end{itemize}
+\begin{minipage}[c]{0.65\textwidth}\scriptsize
+\begin{empheq}[box=\fbox]{align*}
+\min_{\widehat{\mathcal R}_{1,0},\ldots,\widehat{\mathcal R}_{1,\mathsf d}} & \quad
+\sum_{j\in\widehat S_1} \omega_j\left [\frac{1}{h_j} \int_{c_j} \psi_{\mathsf{d},1}(x)\mathsf dx -\psi_j \right]^2\\
+\text{s.t.} & \quad \frac{1}{h_1}\int_{c_1}\psi_{\mathsf{d},1}(x)\mathrm{d}x=\psi_1\\
+& \quad  \psi_{\mathsf{d},1}^{(1)}(x_\frac{1}{2})=\psi_{\text{lf},1}
+\end{empheq}
+\end{minipage}
+\begin{minipage}[c]{0.025\textwidth}
+$\Leftrightarrow$
+\end{minipage}
+\begin{minipage}[c]{0.475\textwidth}\scriptsize
+\begin{empheq}[box=\fbox]{align*}
+\min_{\widehat{\mathcal R}_{1,0},\ldots,\widehat{\mathcal R}_{1,\mathsf d}} & \quad
+\|A_1 \widehat{\mathcal R}_1 - B_1\|_2^2\\
+\text{s.t.} & \quad C_1 \widehat{\mathcal R}_1=D_1
+\end{empheq}
+\end{minipage}
+\end{frame}
+%=============================================================
+
+%=============================================================
+\begin{frame}
+\frametitle{Polynomial Reconstructions}
+\framesubtitle{First Cell $c_1$ (ii)}
+\begin{itemize}
+\item Where the matrices,
+\end{itemize}
+\begin{align*}
+&A_1=[A_{1,j\alpha}]\in\MatR{n_S}{(\mathsf{d}+1)}, A_{1,j\alpha}=\omega_j\frac{1}{h_j}\int_{c_j}(x-m_1)^{\alpha-1}\mathsf dx\\
+&B_1=[B_{1,j}]\in\MatR{n_S}{1}, B_{1,j}=\omega_j\psi_j\\
+&C_1=[C_{1,j\alpha}]\in\MatR{2}{(\mathsf{d}+1)}, C_{1,j\alpha}=
+{\scriptsize\begin{cases}
+\frac{1}{h_1}\int_{c_1}(x-m_1)^{\alpha-1}\mathsf dx & \text{if $j=1$} \\
+0 & \text{if $j=2$ and $\alpha=1$}\\
+(\alpha-1) (x_\frac{1}{2}-m_1)^{\alpha-2} & \text{if $j=2$ and $\alpha=2,\ldots,\mathsf{d}+1$}
+\end{cases}}\\
+&D_1=[D_{1,j}]\in\MatR{2}{1}, D_{1,j}=
+\begin{cases}
+\psi_1 & \text{if $j=1$}\\
+\psi_{\text{lf},1} & \text{if $j=2$}
+\end{cases}
+\end{align*}
+\begin{itemize}
+\item The procedure for the last cell is similar
+\end{itemize}
+\end{frame}
+%=============================================================
+
+\subsection{Interior Cells}
+%=============================================================
+\begin{frame}
+\frametitle{Polynomial Reconstructions}
+\framesubtitle{Interior Cells $c_i\,(i=2,\,\ldots,\,I-1)$ (i)}
+\begin{itemize}
+\item Conservation of $\psi_i$
+$$\psi_{\mathsf{d},i}(x)=\sum_{\alpha=0}^\mathsf{d} \widehat{\mathcal R}_{i,\alpha}(x-m_i)^\alpha
+$$
+\item Coefficients $\widehat{\mathcal R}_i=(\widehat{\mathcal R}_{i,0},\ldots,\widehat{\mathcal R}_{i,\mathsf d})^T$ is the solution of the constrained linear least squares problem
+\end{itemize}
+\begin{minipage}[c]{0.65\textwidth}\scriptsize
+\begin{empheq}[box=\fbox]{align*}
+\min_{\widehat{\mathcal R}_{i,0},\ldots,\widehat{\mathcal R}_{i,\mathsf d}} & \quad
+\sum_{j\in\widehat S_i} \omega_j\left [\frac{1}{h_j} \int_{c_j} \psi_{\mathsf{d},i}(x)\mathsf dx -\psi_j \right]^2\\
+\text{s.t.} & \quad \frac{1}{h_i}\int_{c_i}\psi_{\mathsf{d},i}(x)\mathrm{d}x=\psi_i
+\end{empheq}
+\end{minipage}
+\end{frame}
+%=============================================================
+
+%=============================================================
+\begin{frame}
+\frametitle{Polynomial Reconstructions}
+\framesubtitle{Interior Cells $c_i\,(i=2,\,\ldots,\,I-1)$ (ii)}
+\begin{itemize}
+\item Where the matrices,
+\end{itemize}
+\begin{align*}
+&A_i=[A_{i,j\alpha}]\in\MatR{n_S}{(\mathsf{d}+1)}, A_{i,j\alpha}=\omega_j\frac{1}{h_j}\int_{c_j}(x-m_i)^{\alpha-1}\mathsf dx\\
+&B_i=[B_{i,j}]\in\MatR{n_S}{1}, B_{i,j}=\omega_j\psi_j\\
+&C_i=[C_{i,j\alpha}]\in\MatR{1}{(\mathsf{d}+1)}, C_{i,j\alpha}=\frac{1}{h_i}\int_{c_i}(x-m_i)^{\alpha-1}\mathsf dx\\
+&D_i=[D_{i,j}]\in\MatR{1}{1}, D_{i,j}=\psi_i
+\end{align*}
+\end{frame}
+%=============================================================
+
+\section{PRO Scheme}
+\subsection{Fluxes}
+%=============================================================
+\begin{frame}
+\frametitle{PRO Scheme}
+\begin{itemize}
+\item Fluxes
+\end{itemize}
+
+\[
+\mathcal T_{i+\frac{1}{2}}=
+\begin{cases}
+\mu \widehat \psi_{\mathsf{d},\frac{1}{2}}^{(3)}(x_\frac{1}{2}) & \text{if $i=0$}\\\\
+\mu \dfrac{\widehat \psi_{\mathsf{d},i}^{(3)}(x_{i+\frac{1}{2}})+\widehat \psi_{\mathsf{d},i+1}^{(3)}(x_{i+\frac{1}{2}})}{2} & \text{if $i=1,\ldots,I-1$}\\\\
+\mu \widehat \psi_{\mathsf{d},I+\frac{1}{2}}^{(3)}(x_{I+\frac{1}{2}}) & \text{if $i=I$}
+\end{cases}
+\]
+\end{frame}
+%=============================================================
+
+\section{Numerical Tests}
+%=============================================================
+\begin{frame}
+\frametitle{Numerical Tests (i)}
+\begin{itemize}
+\item $\psi(x)=\exp(x)$
+\item $\psi_l=1$
+\item $\psi_{ll}=1$
+\item $\psi_r=\exp(1)$
+\item $\psi_{rr}=\exp(1)$
+\item $f(x)=-\exp(x)$
+\item $\Omega\in[0,1]$
+\end{itemize}
+\end{frame}
+%=============================================================
+
+%=============================================================
+\begin{frame}
+\frametitle{Numerical Tests (ii)}
+\input{../table_01_01_manufactured.tex}
+\end{frame}
+%=============================================================
+
+%=============================================================
+\begin{frame}
+\frametitle{Numerical Tests (iii)}
+\begin{itemize}
+\item $\psi(x)=-\exp(x)+(3-\text e)x^3+(2\text e-5)x^2+x+1$
+\item $\psi_l=0$
+\item $\psi_{ll}=0$
+\item $\psi_r=0$
+\item $\psi_{rr}=0$
+\item $f(x)=\exp(x)$
+\item $\Omega\in[0,1]$
+\end{itemize}
+\end{frame}
+%=============================================================
+
+%=============================================================
+\begin{frame}
+\frametitle{Numerical Tests (iv)}
+\input{../table_01_01_null.tex}
+\end{frame}
+%=============================================================
+
+%=============================================================
+\begin{frame}
+\frametitle{Conclusions and Further Work}
+\end{frame}
+%=============================================================
+\end{document}

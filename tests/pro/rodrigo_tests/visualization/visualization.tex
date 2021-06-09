@@ -1,0 +1,55 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{array,booktabs}
+\usepackage[none]{hyphenat}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{cmbright}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Hélder}
+\lhead{}
+\rfoot{\thepage}
+\author{}
+\title{}
+\begin{document}
+\section{Inuence of stencil size in convergence order}
+\begin{itemize}
+\item $n_1\equiv$ Stencil size of conservative reconstructions in the cells
+\item $n_2\equiv$ Stencil size of conservative reconstructions in the boundaries
+\item $n_3\equiv$ Stencil size of non-conservative reconstructions in the interfaces
+\item $d\equiv$ Degree of polynomial reconstruction
+\end{itemize}
+
+Note: For odd stencils away from the boundaries, the extra cell was appended to the \textbf{left} side.
+
+Example used: $\phi(x)=\exp(x)$, $\kappa(x)=1$, and $u(x)=0$.
+
+\input{../test1/output/test1.tex}
+\input{../test2/output/test2.tex}
+\input{../test3/output/test3.tex}
+\input{../test4/output/test4.tex}
+\input{../test5/output/test5.tex}
+\input{../test6/output/test6.tex}
+\input{../test7/output/test7.tex}
+\input{../test8/output/test8.tex}
+\input{../test9/output/test9.tex}
+\input{../test10/output/test10.tex}
+\input{../test11/output/test11.tex}
+\input{../test12/output/test12.tex}
+\input{../test13/output/test13.tex}
+\input{../test14/output/test14.tex}
+\input{../test15/output/test15.tex}
+\input{../test16/output/test16.tex}
+
+
+
+\end{document}
+% end of file

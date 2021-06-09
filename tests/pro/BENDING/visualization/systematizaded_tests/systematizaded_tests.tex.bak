@@ -1,0 +1,103 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{array,booktabs}
+\usepackage[none]{hyphenat}
+\usepackage{geometry}
+\usepackage{graphicx}
+\geometry{margin=2.5cm}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section] % reset theorem numbering for each chapter
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition} % definition numbers are dependent on theorem numbers
+\newtheorem{exmp}[thm]{Example} % same for example numbers
+%\usepackage{cmbright}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Biharmonic Test}
+\lhead{\leftmark}
+\rfoot{\thepage}
+\author{}
+\title{}
+\begin{document}
+In this tests we consider:
+\begin{itemize}
+\item $\psi(x)=x^4$
+\item $\psi_\text l=0$
+\item $\psi_\text r=1$
+\item $\psi_\text{ll}=0$
+\item $\psi_\text{rr}=4$
+\item $g(x)=-24$
+\end{itemize}
+\input{../../global_tables/table_01_01_glob3_pro1.tex}
+\pagebreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+In this tests we consider:
+\begin{itemize}
+\item $\psi(x)=\exp(x)$
+\item $\psi_\text l=1$
+\item $\psi_\text r=e$
+\item $\psi_\text{ll}=1$
+\item $\psi_\text{rr}=e$
+\item $g(x)=-\exp(x)$
+\end{itemize}
+\input{../../global_tables/table_01_01_glob1_pro1.tex}
+\pagebreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+In this tests we consider:
+\begin{itemize}
+\item $\psi(x)=\sin(\pi x)$
+\item $\psi_\text l=0$
+\item $\psi_\text{ll}=\pi$
+\item $\psi_\text r=0$
+\item $\psi_\text{rr}=-\pi$
+\item $g(x)=-\pi^4\sin(\pi x)$
+\end{itemize}
+\input{../../global_tables/table_01_01_glob7_pro1.tex} % falta escolher o nome do glob
+\pagebreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+In this tests we consider:
+\begin{itemize}
+\item $\psi(x)=\sin(2\pi x)$
+\item $\psi_\text l=0$
+\item $\psi_\text{ll}=2\pi$
+\item $\psi_\text r=0$
+\item $\psi_\text{rr}=2\pi$
+\item $g(x)=-16\pi^4\sin(2\pi x)$
+\end{itemize}
+\input{../../global_tables/table_01_01_glob8_pro1.tex} % falta escolher o nome do glob
+\pagebreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+In this tests we consider:
+\begin{itemize}
+\item $\psi(x)=\sin(6\pi x)\exp(x)$
+\item $\psi_\text l=0$
+\item $\psi_\text{ll}=6\pi$
+\item $\psi_\text r=0$
+\item $\psi_\text{rr}=6\text e\pi$
+\item $g(x)=\exp(x)\left(24\pi(36\pi^2-1)\cos(6\pi x)-(1296\pi^4-216\pi^2+1)\sin(6\pi x)\right)$
+\end{itemize}
+\input{../../global_tables/table_01_01_glob6_pro1.tex} % falta escolher o nome do glob
+\pagebreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+In this tests we consider:
+\begin{itemize}
+\item $\psi(x)=-\exp(x)-(\text e-3)x^3-(5-2\text e)x^2+x+1$
+\item $\psi_\text l=0$
+\item $\psi_\text{ll}=0$
+\item $\psi_\text r=0$
+\item $\psi_\text{rr}=0$
+\item $g(x)=\exp(x)$
+\end{itemize}
+\input{../../global_tables/table_01_01_glob10_pro1.tex} % falta escolher o nome do glob
+\end{document}
+% end of file

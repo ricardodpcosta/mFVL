@@ -1,0 +1,51 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage{kpfonts}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{multirow}
+\newcommand{\x}{\times}
+\usepackage[left=3cm,right=2cm,top=3cm,bottom=3cm]{geometry}
+\begin{document}
+\section{CDR}
+\begin{itemize}
+\item Imposing Dirichlet bc at the left boundary and Neumann at the right;
+\item Considering $\epsilon=0$;
+\item Type II fluxes (``non-conservative'').
+\end{itemize}
+
+\input{../test_c1_e0/output/tables/uniform_h_zero_c1}
+\input{../test_c2_e0/output/tables/uniform_h_zero_c2}
+
+\input{../test_c1_e_h_2/output/tables/uniform_h_over_2_c1}
+\input{../test_c2_e_h_2/output/tables/uniform_h_over_2_c2}
+\input{../test_c3_e_h_2/output/tables/uniform_h_over_2_c3}
+\input{../test_c4_e_h_2/output/tables/uniform_h_over_2_c4}
+
+\input{../test_c1_e_h_2_2/output/tables/uniform_h_square_over_2_c1}
+\input{../test_c2_e_h_2_2/output/tables/uniform_h_square_over_2_c2}
+\input{../test_c3_e_h_2_2/output/tables/uniform_h_square_over_2_c3}
+\input{../test_c4_e_h_2_2/output/tables/uniform_h_square_over_2_c4}
+\pagebreak
+
+\section{Biharmonic}
+
+\begin{itemize}
+\item manufactured solutions
+\item 01\_01 -- $\psi_\text{L}$=$\psi_\text{LL}$=1 and $\psi_\text{R}$=$\psi_\text{RR}$=$\exp(1)$; $\psi(x)=\exp(x)$;
+\item 02\_02 -- $\psi_\text{L}$=1, $M_\text{L}$=$-1$, $\psi_\text{R}$=$\exp(1)$, and $M_\text{R}$=$-\exp(1)$; $\psi(x)=\exp(x)$
+\item 01\_23 -- $\psi_\text{L}$=$\psi_\text{LL}$=1, $M_\text{R}$=$G_\text{R}$=$-\exp(1)$; $\psi(x)=\exp(x)$;
+\end{itemize}
+\input{table_01_01_manufactured}
+\input{table_02_02_manufactured}
+\input{table_01_23_manufactured}
+\input{table_01_01_homogenuous}
+
+\end{document}

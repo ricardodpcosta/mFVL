@@ -1,0 +1,54 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{array,booktabs}
+\usepackage[none]{hyphenat}
+\usepackage{geometry}
+\usepackage{graphicx}
+\geometry{margin=2.5cm}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section] % reset theorem numbering for each chapter
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition} % definition numbers are dependent on theorem numbers
+\newtheorem{exmp}[thm]{Example} % same for example numbers
+%\usepackage{cmbright}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Biharmonic Test}
+\lhead{\leftmark}
+\rfoot{\thepage}
+\author{}
+\title{}
+\begin{document}
+
+
+In this tests we consider:
+\begin{itemize}
+\item $\psi(x)=-\exp(x)-(\text e-3)x^3-(5-2\text e)x^2+x+1$
+\item $\psi_\text l=0$
+\item $\psi_\text{ll}=0$
+\item $\psi_\text r=0$
+\item $\psi_\text{rr}=0$
+\item $g(x)=\exp(x)$
+\item the different PRO schemes are:
+	\begin{itemize}
+	\item PRO1 --- weak ($R=A^\dagger B$) and degree $d$
+	\item PRO2 --- strong (constrained least squares) and degree $d$
+	\item PRO3 --- weak ($R=A^\dagger B$) and degree $d+1$
+	\item PRO4 --- strong (constrained least squares) and degree $d+1$
+	\item PRO5 --- weak ($R=A^\dagger B$) and degree $d+2$
+	\item PRO6 --- strong (constrained least squares) and degree $d+2$
+	\end{itemize}
+\end{itemize}
+\input{../../global_tables/test_01_01_test39_pro1.tex} % falta escolher o nome do glob
+\end{document}
+% end of file

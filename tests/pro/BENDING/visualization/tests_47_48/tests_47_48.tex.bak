@@ -1,0 +1,350 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{array,booktabs}
+\usepackage[none]{hyphenat}
+\usepackage{geometry}
+\usepackage{graphicx}
+\geometry{margin=2.5cm}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\theoremstyle{plain}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\newtheorem{thm}{Theorem}[section] % reset theorem numbering for each chapter
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition} % definition numbers are dependent on theorem numbers
+\newtheorem{exmp}[thm]{Example} % same for example numbers
+%\usepackage{cmbright}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Biharmonic Test}
+\lhead{\leftmark}
+\rfoot{\thepage}
+\author{}
+\title{}
+\begin{document}
+In this tests we consider:
+\begin{itemize}
+\item $\psi(x)=x^3$
+\item $\psi_\text l=0$
+\item $\psi_\text r=1$
+\item $\psi_\text{ll}=0$
+\item $\psi_\text{rr}=3$
+\item $g(x)=0$
+\end{itemize}
+\input{../../tests_01_01/test_01_01_test47_pro1/output/tables/test_01_01_test47_pro1.tex}
+\input{../../tests_01_01/test_01_01_test47_pro1_cons/output/tables/test_01_01_test47_pro1_cons.tex}
+
+\begin{figure}[H]
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test47_pro1/output/plots/nc20_deg3_wei111_pro1.pdf}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test47_pro1/output/plots/nc40_deg3_wei111_pro1.pdf}
+\end{subfigure}
+
+\medskip
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test47_pro1/output/plots/nc80_deg3_wei111_pro1.pdf}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test47_pro1/output/plots/nc160_deg3_wei111_pro1.pdf}
+\end{subfigure}
+
+\medskip
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test47_pro1/output/plots/nc320_deg3_wei111_pro1.pdf}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test47_pro1/output/plots/nc640_deg3_wei111_pro1.pdf}
+\end{subfigure}
+
+\caption{$\omega=1|1,1$, d=3}
+\end{figure}
+%%%% 2
+\begin{figure}[H]
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test47_pro1_cons/output/plots/nc20_deg3_wei111_pro1_cons.pdf}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test47_pro1_cons/output/plots/nc40_deg3_wei111_pro1_cons.pdf}
+\end{subfigure}
+
+\medskip
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test47_pro1_cons/output/plots/nc80_deg3_wei111_pro1_cons.pdf}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test47_pro1_cons/output/plots/nc160_deg3_wei111_pro1_cons.pdf}
+\end{subfigure}
+
+\medskip
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test47_pro1_cons/output/plots/nc320_deg3_wei111_pro1_cons.pdf}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test47_pro1_cons/output/plots/nc640_deg3_wei111_pro1_cons.pdf}
+\end{subfigure}
+
+\caption{$\omega=1|1,1$, d=3 (consistency)}
+\end{figure}
+
+\pagebreak
+%%%%%%%%%%%%%%%%%%%%
+In this tests we consider:
+\begin{itemize}
+\item $\psi(x)=x^4$
+\item $\psi_\text l=0$
+\item $\psi_\text r=1$
+\item $\psi_\text{ll}=0$
+\item $\psi_\text{rr}=4$
+\item $g(x)=-24$
+\item constant mesh
+\end{itemize}
+\input{../../global_tables/table_01_01_glob3_pro1.tex}
+\input{../../global_tables/table_01_01_glob3_pro1_cons.tex}
+
+\begin{figure}[H]
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test9_pro1/output/plots/nc20_deg3_wei111_pro1.pdf}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test9_pro1/output/plots/nc40_deg3_wei111_pro1.pdf}
+\end{subfigure}
+
+\medskip
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test9_pro1/output/plots/nc80_deg3_wei111_pro1.pdf}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test9_pro1/output/plots/nc160_deg3_wei111_pro1.pdf}
+\end{subfigure}
+
+\medskip
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test9_pro1/output/plots/nc320_deg3_wei111_pro1.pdf}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test9_pro1/output/plots/nc640_deg3_wei111_pro1.pdf}
+\end{subfigure}
+
+\caption{$\omega=1|1,1$, d=3}
+\end{figure}
+%%%% 2
+\begin{figure}[H]
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test9_pro1_cons/output/plots/nc20_deg3_wei111_pro1_cons.pdf}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test9_pro1_cons/output/plots/nc40_deg3_wei111_pro1_cons.pdf}
+\end{subfigure}
+
+\medskip
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test9_pro1_cons/output/plots/nc80_deg3_wei111_pro1_cons.pdf}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test9_pro1_cons/output/plots/nc160_deg3_wei111_pro1_cons.pdf}
+\end{subfigure}
+
+\medskip
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test9_pro1_cons/output/plots/nc320_deg3_wei111_pro1_cons.pdf}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test9_pro1_cons/output/plots/nc640_deg3_wei111_pro1_cons.pdf}
+\end{subfigure}
+
+\caption{$\omega=1|1,1$, d=3 (consistency)}
+\end{figure}
+%%%% 3
+\begin{figure}[H]
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test9_pro1/output/plots/nc20_deg3_wei111_pro1_v2.pdf}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test9_pro1/output/plots/nc40_deg3_wei111_pro1_v2.pdf}
+\end{subfigure}
+
+\medskip
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test9_pro1/output/plots/nc80_deg3_wei111_pro1_v2.pdf}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test9_pro1/output/plots/nc160_deg3_wei111_pro1_v2.pdf}
+\end{subfigure}
+
+\medskip
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test9_pro1/output/plots/nc320_deg3_wei111_pro1_v2.pdf}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test9_pro1/output/plots/nc640_deg3_wei111_pro1_v2.pdf}
+\end{subfigure}
+
+\caption{$\omega=1|1,1$, d=3  $\left(\frac{x-\overline{x}}{h^2}\right)$}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+In this tests we consider:
+\begin{itemize}
+\item $\psi(x)=x^4$
+\item $\psi_\text l=0$
+\item $\psi_\text r=1$
+\item $\psi_\text{ll}=0$
+\item $\psi_\text{rr}=4$
+\item $g(x)=-24$
+\item non-constant mesh
+\end{itemize}
+\input{../../tests_01_01/test_01_01_test48_pro1/output/tables/test_01_01_test48_pro1.tex}
+\input{../../tests_01_01/test_01_01_test48_pro1_cons/output/tables/test_01_01_test48_pro1_cons.tex}
+
+\begin{figure}[H]
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test48_pro1/output/plots/nc20_deg3_wei111_pro1.pdf}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test48_pro1/output/plots/nc40_deg3_wei111_pro1.pdf}
+\end{subfigure}
+
+\medskip
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test48_pro1/output/plots/nc80_deg3_wei111_pro1.pdf}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test48_pro1/output/plots/nc160_deg3_wei111_pro1.pdf}
+\end{subfigure}
+
+\medskip
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test48_pro1/output/plots/nc320_deg3_wei111_pro1.pdf}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test48_pro1/output/plots/nc640_deg3_wei111_pro1.pdf}
+\end{subfigure}
+
+\caption{$\omega=1|1,1$, d=3}
+\end{figure}
+%%%% 2
+\begin{figure}[H]
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test48_pro1_cons/output/plots/nc20_deg3_wei111_pro1_cons.pdf}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test48_pro1_cons/output/plots/nc40_deg3_wei111_pro1_cons.pdf}
+\end{subfigure}
+
+\medskip
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test48_pro1_cons/output/plots/nc80_deg3_wei111_pro1_cons.pdf}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test48_pro1_cons/output/plots/nc160_deg3_wei111_pro1_cons.pdf}
+\end{subfigure}
+
+\medskip
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test48_pro1_cons/output/plots/nc320_deg3_wei111_pro1_cons.pdf}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test48_pro1_cons/output/plots/nc640_deg3_wei111_pro1_cons.pdf}
+\end{subfigure}
+
+\caption{$\omega=1|1,1$, d=3 (consistency)}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\textwidth]{../../tests_01_01/test_01_01_test48_pro1_cons/output/plots/mesh.pdf}
+\caption{Non-constant mesh.}
+\end{figure}
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+In this tests we consider:
+\begin{itemize}
+\item $\psi(x)=x^4$
+\item $\psi_\text l=0$
+\item $\psi_\text r=1$
+\item $\psi_\text{ll}=0$
+\item $\psi_\text{rr}=4$
+\item $g(x)=-24$
+\item constant mesh
+\item 
+\end{itemize}
+\input{../../tests_01_01/test_01_01_test49_pro1/output/tables/test_01_01_test49_pro1.tex}
+\input{../../tests_01_01/test_01_01_test49_pro1_cons/output/tables/test_01_01_test49_pro1_cons.tex}
+
+\begin{figure}[H]
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test49_pro1/output/plots/nc20_deg3_wei111_pro1.pdf}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test49_pro1/output/plots/nc40_deg3_wei111_pro1.pdf}
+\end{subfigure}
+
+\medskip
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test49_pro1/output/plots/nc80_deg3_wei111_pro1.pdf}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test49_pro1/output/plots/nc160_deg3_wei111_pro1.pdf}
+\end{subfigure}
+
+\medskip
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test49_pro1/output/plots/nc320_deg3_wei111_pro1.pdf}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test49_pro1/output/plots/nc640_deg3_wei111_pro1.pdf}
+\end{subfigure}
+
+\caption{$\omega=1|1,1$, d=3}
+\end{figure}
+%%%% 2
+\begin{figure}[H]
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test49_pro1_cons/output/plots/nc20_deg3_wei111_pro1_cons.pdf}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test49_pro1_cons/output/plots/nc40_deg3_wei111_pro1_cons.pdf}
+\end{subfigure}
+
+\medskip
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test49_pro1_cons/output/plots/nc80_deg3_wei111_pro1_cons.pdf}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test49_pro1_cons/output/plots/nc160_deg3_wei111_pro1_cons.pdf}
+\end{subfigure}
+
+\medskip
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test49_pro1_cons/output/plots/nc320_deg3_wei111_pro1_cons.pdf}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\linewidth]{../../tests_01_01/test_01_01_test49_pro1_cons/output/plots/nc640_deg3_wei111_pro1_cons.pdf}
+\end{subfigure}
+
+\caption{$\omega=1|1,1$, d=3 (consistency)}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\textwidth]{../../tests_01_01/test_01_01_test49_pro1_cons/output/plots/mesh.pdf}
+\end{figure}
+\pagebreak
+
+\end{document}
+% end of file

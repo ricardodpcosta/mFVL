@@ -1,0 +1,154 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage{kpfonts}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage[left=3cm,right=2cm,top=3cm,bottom=3cm]{geometry}
+\author{Hélder Cruz}
+\newcommand{\phil}{\phi_\text{l}}
+\newcommand{\phill}{\phi_{\text{ll}}}
+\newcommand{\phir}{\phi_\text{r}}
+\newcommand{\phirr}{\phi_{\text{rr}}}
+\newcommand{\xlf}{x_{\text{lf}}}
+\newcommand{\xrg}{x_{\text{rg}}}
+\begin{document}
+
+In this tests we introduced the finite differences with the unknowns ($\phi_i$) in the centroids of the cells.
+
+First, we set the four boundary conditions, two of them in each boundary of the domain of the mesh: $\phil$, $\phill$, $\phir$, $\phirr$.
+
+Follow that, we have a fourth order differential equation (biharmonic operator):
+\begin{align*}
+-\phi^{(4)} & = s && \quad \text{ in } \Omega=]x_\text{lf},x_\text{rg}[\\
+\phi & =\phi_{\text{lf},0} && \quad \text{ on } x=x_\text{lf}\\
+\phi^{(1)} & =\phi_{\text{lf},1} && \quad \text{ on } x=x_\text{lf}\\
+\phi & =\phi_{\text{rg},0} && \quad \text{ on } x=x_\text{rg}\\
+\phi^{(1)} & =\phi_{\text{rg},1} && \quad \text{ on } x=x_\text{rg}
+\end{align*}
+where the $\phi$ function is the exact function and the $s$ is the source term. Following, we approximate the exact function for a polynomial of degree 4 that needs 5 points,
+\[
+\phi(x)\approx p_4(x)=ax^4+bx^3+cx^2+dx+e
+\]
+\begin{align*}
+&-\phi^{\text{(4)}}=s\\
+\Leftrightarrow &-(ax^4+bx^3+cx^2+dx+e)^{\text{(4)}}=s(m_i)\\
+\Leftrightarrow &-24a=s(m_i)
+\end{align*}
+
+To calculate the $a$ value we need to solve a linear system that:
+\begin{itemize}
+\item for the fist cell:
+
+Note: consider that $\xlf=0$
+\begin{align*}
+EQ1&:p_4(0)=\phil\Leftrightarrow e =\phil\\
+EQ2&:p_4^{\text{(1)}}(0)=\phill\Leftrightarrow d=\phill\\
+EQ3&:p_4\left(\frac{h}{2}\right)=\phi_1\Leftrightarrow a\left(\frac{h}{2}\right)^4+b\left(\frac{h}{2}\right)^3+c\left(\frac{h}{2}\right)^2+d\left(\frac{h}{2}\right)+e=\phi_1\\
+EQ4&:p_4\left(\frac{3h}{2}\right)=\phi_2\Leftrightarrow a\left(\frac{3h}{2}\right)^4+b\left(\frac{3h}{2}\right)^3+c\left(\frac{3h}{2}\right)^2+d\left(\frac{3h}{2}\right)+e=\phi_2\\
+EQ5&:p_4\left(\frac{5h}{2}\right)=\phi_3\Leftrightarrow a\left(\frac{5h}{2}\right)^4+b\left(\frac{5h}{2}\right)^3+c\left(\frac{5h}{2}\right)^2+d\left(\frac{5h}{2}\right)+e=\phi_3\\
+\end{align*}
+%
+\item for the second cell:
+\begin{align*}
+EQ1&:p_4(0)=\phil\Leftrightarrow e =\phil\\
+EQ2&:p_4\left(\frac{h}{2}\right)=\phi_1\Leftrightarrow a\left(\frac{h}{2}\right)^4+b\left(\frac{h}{2}\right)^3+c\left(\frac{h}{2}\right)^2+d\left(\frac{h}{2}\right)+e=\phi_1\\
+EQ3&:p_4\left(\frac{3h}{2}\right)=\phi_2\Leftrightarrow a\left(\frac{3h}{2}\right)^4+b\left(\frac{3h}{2}\right)^3+c\left(\frac{3h}{2}\right)^2+d\left(\frac{3h}{2}\right)+e=\phi_2\\
+EQ4&:p_4\left(\frac{5h}{2}\right)=\phi_3\Leftrightarrow a\left(\frac{5h}{2}\right)^4+b\left(\frac{5h}{2}\right)^3+c\left(\frac{5h}{2}\right)^2+d\left(\frac{5h}{2}\right)+e=\phi_3\\
+EQ5&:p_4\left(\frac{7h}{2}\right)=\phi_4\Leftrightarrow a\left(\frac{7h}{2}\right)^4+b\left(\frac{7h}{2}\right)^3+c\left(\frac{7h}{2}\right)^2+d\left(\frac{7h}{2}\right)+e=\phi_4\\
+\end{align*}
+%
+\item for the $i=3,\ldots,I-2$ cells:
+\begin{align*}
+EQ1&:p_4\left(m_i-2h\right)=\phi_{i-2}\Leftrightarrow a\left(m_i-2h\right)^4+b\left(m_i-2h\right)^3+c\left(m_i-2h\right)^2+d\left(m_i-2h\right)+e=\phi_{i-2}\\
+EQ2&:p_4\left(m_i-h\right)=\phi_{i-1}\Leftrightarrow a\left(m_i-h\right)^4+b\left(m_i-h\right)^3+c\left(m_i-h\right)^2+d\left(m_i-h\right)+e=\phi_{i-1}\\
+EQ3&:p_4\left(m_i\right)=\phi_{i}\Leftrightarrow a\left(m_i\right)^4+b\left(m_i\right)^3+c\left(m_i\right)^2+d\left(m_i\right)+e=\phi_{i}\\
+EQ4&:p_4\left(m_i+h\right)=\phi_{i+1}\Leftrightarrow a\left(m_i+h\right)^4+b\left(m_i+h\right)^3+c\left(m_i+h\right)^2+d\left(m_i+h\right)+e=\phi_{i+1}\\
+EQ5&:p_4\left(m_i+2h\right)=\phi_{i+2}\Leftrightarrow a\left(m_i+2h\right)^4+b\left(m_i+2h\right)^3+c\left(m_i+2h\right)^2+d\left(m_i+2h\right)+e=\phi_{i+2}\\
+\end{align*}
+%
+\item for the penultimate cell:
+\begin{align*}
+EQ1&:p_4\left(m_{I-3}\right)=\phi_{I-3}\Leftrightarrow a\left(m_{I-3}\right)^4+b\left(m_{I-3}\right)^3+c\left(m_{I-3}\right)^2+d\left(m_{I-3}\right)+e=\phi_{I-3}\\
+EQ2&:p_4\left(m_{I-2}\right)=\phi_{I-2}\Leftrightarrow a\left(m_{I-2}\right)^4+b\left(m_{I-2}\right)^3+c\left(m_{I-2}\right)^2+d\left(m_{I-2}\right)+e=\phi_{I-2}\\
+EQ3&:p_4\left(m_{I-1}\right)=\phi_{I-1}\Leftrightarrow a\left(m_{I-1}\right)^4+b\left(m_{I-1}\right)^3+c\left(m_{I-1}\right)^2+d\left(m_{I-1}\right)+e=\phi_{I-1}\\
+EQ4&:p_4\left(m_{I}\right)=\phi_{I}\Leftrightarrow a\left(m_{I}\right)^4+b\left(m_{I}\right)^3+c\left(m_{I}\right)^2+d\left(m_{I}\right)+e=\phi_{I}\\
+EQ5&:p_4\left(m_{I}+\frac{h}{2}\right)=\phir\Leftrightarrow a\left(m_{I}+\frac{h}{2}\right)^4+b\left(m_{I}+\frac{h}{2}\right)^3+c\left(m_{I}+\frac{h}{2}\right)^2+d\left(m_{I}+\frac{h}{2}\right)+e=\phir\\
+\end{align*}
+%
+\item for the last cell:
+\begin{align*}
+EQ1&:p_4\left(m_{I-2}\right)=\phi_{I-2}\Leftrightarrow a\left(m_{I-2}\right)^4+b\left(m_{I-2}\right)^3+c\left(m_{I-2}\right)^2+d\left(m_{I-2}\right)+e\\
+EQ2&:p_4\left(m_{I-1}\right)=\phi_{I-1}\Leftrightarrow a\left(m_{I-1}\right)^4+b\left(m_{I-1}\right)^3+c\left(m_{I-1}\right)^2+d\left(m_{I-1}\right)+e\\
+EQ3&:p_4\left(m_{I}\right)=\phi_{I}\Leftrightarrow a\left(m_{I}\right)^4+b\left(m_{I}\right)^3+c\left(m_{I}\right)^2+d\left(m_{I}\right)+e\\
+EQ4&:p_4\left(m_{I}+\frac{h}{2}\right)=\phir\Leftrightarrow a\left(m_{I}+\frac{h}{2}\right)^4+b\left(m_{I}+\frac{h}{2}\right)^3+c\left(m_{I}+\frac{h}{2}\right)^2+d\left(m_{I}+\frac{h}{2}\right)+e=\phir\\
+EQ5&:p_4^{\text{(1)}}\left(m_{I}+\frac{h}{2}\right)=\phirr\Leftrightarrow 4a\left(m_{I}+\frac{h}{2}\right)^3+3b\left(m_{I}+\frac{h}{2}\right)^2+2c\left(m_{I}+\frac{h}{2}\right)+d=\phirr\\
+\end{align*}
+\end{itemize}
+
+And, for the first cell we have:
+\[
+-\frac{48}{h^4}\phi_1
++\frac{32}{3h^4}\phi_2
+-\frac{48}{25h^4}\phi_3
+=S_1
+-\frac{64}{5h^3}\phill
+-\frac{2944}{75h^4}\phil
+\]
+for the second cell we have:
+\[
+\frac{8}{h^4}\phi_1
+-\frac{8}{h^4}\phi_2
++\frac{24}{5h^4}\phi_3
+-\frac{8}{7h^4}\phi_4
+=S_2
++\frac{128}{35h^4}\phil
+\]
+for the $i=3,\ldots,I-2$ cells we have:
+\[
+-\frac{1}{h^4}\phi_{i-2}
++\frac{4}{h^4}\phi_{i-1}
+-\frac{6}{h^4}\phi_{i}
++\frac{4}{h^4}\phi_{i+1}
+-\frac{1}{h^4}\phi_{i+2}
+=S_i
+\]
+for the penultimate cell we have:
+\[
+-\frac{8}{7h^4}\phi_{I-3}
++\frac{24}{5h^4}\phi_{I-2}
+-\frac{8}{h^4}\phi_{I-1}
++\frac{8}{h^4}\phi_{I}
+=S_{I-1}
++\frac{128}{35h^4}\phir
+\]
+for the last cell we have:
+\[
+-\frac{48}{25h^4}\phi_{I-2}
++\frac{32}{3h^4}\phi_{I-1}
+-\frac{48}{h^4}\phi_{I}
+=S_I
++\frac{64}{5h^3}\phirr
+-\frac{2944}{75h^4}\phir
+\]
+%=%=%=%=%=%=%=%=%=%=%=%=%=%=%=%=%=%=%=%=%=%=%=%=%=%=%=%=%=% 1
+
+\pagebreak
+In this test we will consider:
+\begin{itemize}
+\item $\phi(x)=\exp(x)$
+\item $\phil=1$;
+\item $\phill=1$;
+\item $\phir=\exp(1)$;
+\item $\phirr=\exp(1)$;
+\item $g(x)=-\exp(x)$.
+\end{itemize}
+\input{table_results.tex}
+
+\end{document}

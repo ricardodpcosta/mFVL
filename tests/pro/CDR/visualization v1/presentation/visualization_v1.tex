@@ -1,0 +1,290 @@
+\documentclass[10pt,fleqn]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+% for double screen presentation
+%\usepackage{pgfpages}
+%\setbeamertemplate{note page}[sqeeze]
+%\setbeameroption{show notes on second screen=right}
+
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{sansmathfonts}
+\usepackage{amsmath,times,empheq}
+\usepackage{fontawesome} % itemize symbols
+%\title{Visualization V1}
+%\date{}
+%\author[Hélder]{\underline{Hélder C. Barbosa}, Ricardo Costa, Gaspar J. Machado}
+%\institute{\parbox{\linewidth}{\centering%
+%Centre of Mathematics, University of Minho, Guimarães, Portugal\endgraf\bigskip\tiny{
+%Financed by National Funds and by FCT within the Project FCT - UID/MAT/00013/2013}}}
+
+\usetheme{texsx}
+
+%\usefonttheme[onlymath]{serif}
+%\usefonttheme{serif}
+%\usefonttheme{professionalfonts}
+
+\usepackage{empheq}
+\newcommand{\MatR}[2]{{\cal M}_{#1\times #2}(\mathbb R)}
+\newcommand{\VarCount}[3]{#1=#2,\ldots,#3}
+
+\begin{document}
+ 
+%---------------------------------------------------
+%\begin{frame}[noframenumbering]
+%\titlepage
+%\end{frame}
+%\note{
+%}
+%---------------------------------------------------
+
+
+ 
+\section{Pure Diffusion}
+
+%%---------------------------------------------------
+\begin{frame}
+\frametitle{Pure Diffusion | Formulation}
+
+\[
+\begin{cases}
+-\psi''=s & \text{ in}\quad  \Omega=]x_\text{lf},x_\text{rg}+\epsilon[\\
+\psi=\psi_{\text{lf},0} & \text{ on}\quad  x=x_\text{lf}\\
+-\psi'=\psi_{\text{rg},1} & \text{ on}\quad  x=x_\text{rg}+\epsilon
+\end{cases}
+\]
+
+\end{frame}
+%%---------------------------------------------------
+
+%-------------------------------------------------
+\begin{frame}
+\frametitle{Mesh}
+
+\begin{center}
+\includegraphics[width=\textwidth]{images/mesh_notation_reconstructions/mesh_notation_reconstructions}
+\end{center}
+
+\begin{itemize}
+\item $C_i$ --- cell $i$
+\item $I$ --- number of cells
+\item $x_{i-\frac{1}{2}}$, $x_{i+\frac{1}{2}}$ --- boundary points of cell $i$
+\item $h_i$ --- length of cell $i$
+\item $m_i$ --- centroid of cell $i$
+\end{itemize}
+
+\end{frame}
+%-------------------------------------------------
+
+%---------------------------------------------------
+\begin{frame}
+\frametitle{Polynomial Reconstructions | Inner Vertices}
+
+\[
+\psi_{i+\frac{1}{2},\mathsf{d}}(x)=\sum_{\alpha=0}^\mathsf{d} \mathcal R_{i+\frac{1}{2},\alpha}(x-x_{i+\frac{1}{2}})^\alpha
+\]
+\begin{align*}
+\min_{\mathcal R_{i+\frac{1}{2},0},\ldots,\mathcal R_{i+\frac{1}{2},\mathsf d}} & \quad
+\sum_{j\in\widehat S_{i+\frac{1}{2}}} \omega_j\left [\frac{1}{h_j} \int_{c_j} \psi_{i+\frac{1}{2},\mathsf{d}}(x)\mathsf dx -\psi_j \right]^2
+\end{align*}
+
+This will be needed to approximate $\mathbf{F}_{i+\frac{1}{2}}\approx\mathcal{F}_{i+\frac{1}{2}}= \widetilde \psi'_{i+\frac{1}{2}}(x_{i+\frac{1}{2}})$
+
+\end{frame}
+%---------------------------------------------------
+
+%---------------------------------------------------
+\begin{frame}
+\frametitle{Polynomial Reconstructions | Left Boundary}
+
+\[
+\psi_{\frac{1}{2},\mathsf{d}}(x)=\sum_{\alpha=0}^\mathsf{d} \mathcal R_{\frac{1}{2},\alpha}(x-x_{\text{lf}})^\alpha
+\]
+\begin{align*}
+\min_{\mathcal R_{\frac{1}{2},0},\ldots,\mathcal R_{\frac{1}{2},\mathsf d}} & \quad
+\sum_{j\in\widehat S_\frac{1}{2}} \omega_j\left [\frac{1}{h_j} \int_{c_j} \psi_{\frac{1}{2},\mathsf{d}}(x)\mathsf dx -\psi_j \right]^2\\
+\text{s.t.} & \quad \psi_{\frac{1}{2},\mathsf{d}}(x_{\text{lf}})=\psi_{\text{lf},0}
+\end{align*}
+
+This will be needed to approximate $\mathbf{F}_{\frac{1}{2}}\approx\mathcal{F}_{\frac{1}{2}} = \psi'_{\frac{1}{2}}(x_{\text{lf}})$
+\end{frame}
+%---------------------------------------------------
+
+%---------------------------------------------------
+\begin{frame}
+\frametitle{Polynomial Reconstructions | Right Boundary}
+
+\[
+\psi_{I+\frac{1}{2},\mathsf{d}}(x)=\sum_{\alpha=0}^\mathsf{d} \mathcal R_{I+\frac{1}{2},\alpha}(x-x_{\text{rg}})^\alpha
+\]
+\begin{align*}
+\min_{\mathcal R_{I+\frac{1}{2},0},\ldots,\mathcal R_{I+\frac{1}{2},\mathsf d}} & \quad
+\sum_{j\in\widehat S_{I+\frac{1}{2}}} \omega_j\left [\frac{1}{h_j} \int_{c_j} \psi_{I+\frac{1}{2},\mathsf{d}}(x)\mathsf dx -\psi_j \right]^2\\
+\text{s.t.} & \quad -\psi'_{I+\frac{1}{2},\mathsf{d}}(x_{\text{rg}}+\epsilon)=\psi_{\text{rg},1}
+\end{align*}
+
+This will be needed to approximate $\mathbf{F}_{I+\frac{1}{2}}\approx\mathcal{F}_{I+\frac{1}{2}}=\widehat \psi'_{I+\frac{1}{2}}(x_{\text{rg}})$
+\end{frame}
+%---------------------------------------------------
+
+%-------------------------------------------------
+\begin{frame}
+\frametitle{Tests}
+
+In this test we will consider:
+\begin{itemize}
+\item $\overline{\Omega}=[0,1+\epsilon]$
+\item $\psi(x)=\exp(x)$
+\item $\psi(0)=1$
+\item $\varphi_{\text{n2}}=-\exp(1+\epsilon)$
+%\item $\psi(1+\epsilon)=-\exp(1+\epsilon)$
+\end{itemize}
+\end{frame}
+%-------------------------------------------------
+
+%-------------------------------------------------
+\begin{frame}
+\frametitle{Tests | $\epsilon=0$ | degree d}
+
+\begin{minipage}[b]{0.49\textwidth}
+\small
+\centering 
+uniform mesh
+\input{tables/new_0h}
+\end{minipage}
+\begin{minipage}[b]{0.49\textwidth}
+\small
+\centering 
+non-uniform mesh
+\input{tables/unstructured/unstructured_0_d.tex}
+\end{minipage}
+\end{frame}
+%-------------------------------------------------
+
+%-------------------------------------------------
+\begin{frame}
+\frametitle{Tests | $\epsilon=\frac{h}{2}$ | degree d}
+
+\begin{minipage}[b]{0.49\textwidth}
+\small
+\centering 
+uniform mesh
+\input{tables/uniform_h_over_2_d}
+\end{minipage}
+\begin{minipage}[b]{0.49\textwidth}
+\small
+\centering 
+non-uniform mesh
+\input{tables/unstructured/unstructured_h_over_2_d}
+\end{minipage}
+\end{frame}
+%-------------------------------------------------
+
+%-------------------------------------------------
+\begin{frame}
+\frametitle{Tests | $\epsilon=\frac{h}{2}$ | degree d+1}
+
+\begin{minipage}[b]{0.49\textwidth}
+\small
+\centering 
+uniform mesh
+\input{tables/uniform_h_over_2_d_plus_1}
+\end{minipage}
+\begin{minipage}[b]{0.49\textwidth}
+\small
+\centering 
+non-uniform mesh
+\input{tables/unstructured/unstructured_h_over_2_d_plus_1}
+\end{minipage}
+\end{frame}
+%-------------------------------------------------
+
+%-------------------------------------------------
+\begin{frame}
+\frametitle{Tests | $\epsilon=h$ | degree d}
+
+\begin{minipage}[b]{0.49\textwidth}
+\small
+\centering 
+uniform mesh
+\input{tables/new_1_mais_h}
+\end{minipage}
+\begin{minipage}[b]{0.49\textwidth}
+\small
+\centering 
+non-uniform mesh
+\input{tables/unstructured/unstructured_h_d}
+\end{minipage}
+\end{frame}
+%-------------------------------------------------
+
+%-------------------------------------------------
+\begin{frame}
+\frametitle{Tests | $\epsilon=h$ | degree d+1}
+
+\begin{minipage}[b]{0.315\textwidth}
+\small
+\centering 
+uniform mesh
+\input{tables/uniform_h_d_plus_1}
+\end{minipage}
+\begin{minipage}[b]{0.315\textwidth}
+\small
+\centering 
+non-uniform mesh
+\input{tables/unstructured/unstructured_h_d_plus_1}
+\end{minipage}
+\begin{minipage}[b]{0.315\textwidth}
+\small
+\centering 
+uniform mesh
+\input{tables/uniform_h_d_plus_1_cons}
+\end{minipage}
+\end{frame}
+%-------------------------------------------------
+
+%-------------------------------------------------
+\begin{frame}
+\frametitle{Tests | $\epsilon=h^2$ | degree d}
+
+\begin{minipage}[b]{0.49\textwidth}
+\small
+\centering 
+uniform mesh
+\input{tables/new_1_mais_h_ao_quadrado}
+\end{minipage}
+\begin{minipage}[b]{0.49\textwidth}
+\small
+\centering 
+non-uniform mesh
+\input{tables/unstructured/unstructured_h_square_d}
+\end{minipage}
+\end{frame}
+%-------------------------------------------------
+
+
+%-------------------------------------------------
+\begin{frame}
+\frametitle{Tests | $\epsilon=h^2$ | degree d+1}
+
+\begin{minipage}[b]{0.49\textwidth}
+\small
+\centering 
+uniform mesh
+\input{tables/new_1_mais_h_ao_quadrado_d_plus_1}
+\end{minipage}
+\begin{minipage}[b]{0.49\textwidth}
+\small
+\centering 
+non-uniform mesh
+\input{tables/unstructured/unstructured_h_square_d_plus_1}
+\end{minipage}
+\end{frame}
+%-------------------------------------------------
+
+
+%-------------------------------------------------
+\end{document}
+% end of file

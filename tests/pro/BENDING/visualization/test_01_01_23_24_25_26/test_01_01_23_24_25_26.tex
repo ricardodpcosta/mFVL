@@ -1,0 +1,59 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{array,booktabs}
+\usepackage[none]{hyphenat}
+\usepackage{geometry}
+\usepackage{graphicx}
+\geometry{margin=2.5cm}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section] % reset theorem numbering for each chapter
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition} % definition numbers are dependent on theorem numbers
+\newtheorem{exmp}[thm]{Example} % same for example numbers
+%\usepackage{cmbright}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Biharmonic Test}
+\lhead{\leftmark}
+\rfoot{\thepage}
+\author{}
+\title{}
+\begin{document}
+
+
+In this tests we consider:
+\begin{itemize}
+\item $\psi(x)=\sin(6\pi x)\exp(x)$
+\item $\psi_\text l=0$
+\item $\psi_\text{ll}=6\pi$
+\item $\psi_\text r=0$
+\item $\psi_\text{rr}=6\text e\pi$
+\item $g(x)=\exp(x)\left(24\pi(36\pi^2-1)\cos(6\pi x)-(1296\pi^4-216\pi^2+1)\sin(6\pi x)\right)$
+\item the different PRO schemes are:
+	\begin{itemize}
+	\item PRO1 --- weak ($R=A^\dagger B$) and degree $d$
+	\item PRO2 --- strong (constrained least squares) and degree $d$
+	\item PRO3 --- weak ($R=A^\dagger B$) and degree $d+1$
+	\item PRO4 --- strong (constrained least squares) and degree $d+1$
+	\item PRO5 --- weak ($R=A^\dagger B$) and degree $d+2$
+	\item PRO6 --- strong (constrained least squares) and degree $d+2$
+	\end{itemize}
+\end{itemize}
+\input{../../global_tables/table_01_01_glob6_pro1.tex} % falta escolher o nome do glob
+\input{../../global_tables/table_01_01_glob6_pro2.tex}
+\input{../../global_tables/table_01_01_glob6_pro3.tex}
+\input{../../global_tables/table_01_01_glob6_pro4.tex}
+\input{../../global_tables/table_01_01_glob6_pro5.tex}
+\input{../../global_tables/table_01_01_glob6_pro6.tex} 
+\end{document}
+% end of file

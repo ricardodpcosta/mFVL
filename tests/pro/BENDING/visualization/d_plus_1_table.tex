@@ -1,0 +1,52 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{array,booktabs}
+\usepackage[none]{hyphenat}
+\usepackage{geometry}
+\usepackage{graphicx}
+\geometry{margin=2.5cm}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section] % reset theorem numbering for each chapter
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition} % definition numbers are dependent on theorem numbers
+\newtheorem{exmp}[thm]{Example} % same for example numbers
+%\usepackage{cmbright}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Biharmonic Tests}
+\lhead{\leftmark}
+\rfoot{\thepage}
+\author{}
+\title{}
+\begin{document}
+
+\section{01-01 tests}
+
+\begin{exmp}
+\label{Example:PRO:bending:01_01_glob5}
+In this tests we consider:
+\begin{itemize}
+\item $\psi(x)=\exp(x)$
+\item $\psi_\text l=1$
+\item $\psi_\text r=e$
+\item $\psi_\text{ll}=1$
+\item $\psi_\text{rr}=e$
+\item $g(x)=-\exp(x)$
+\item in $\widehat \psi_1$ and $\widehat \psi_I$ we reconstruct a polynomial of degree $d+1$
+\end{itemize}
+\end{exmp}
+%\input{../table_01_01_glob1.tex}
+\input{../table_01_01_glob5.tex}
+
+\end{document}
+% end of file

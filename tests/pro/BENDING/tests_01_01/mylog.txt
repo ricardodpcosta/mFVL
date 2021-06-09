@@ -1,0 +1,126 @@
+MATLAB is selecting SOFTWARE OPENGL rendering.
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2015 The MathWorks, Inc.
+                   R2015a (8.5.0.197613) 64-bit (glnxa64)
+                             February 12, 2015
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+[Warning: Name is nonexistent or not a directory: ../../../../../mfvl_run] 
+[> In path (line 109)
+  In addpath (line 86)
+  In run_test_01_01_test49_pro1 (line 8)
+  In run_test_49 (line 4)] 
+[Warning: Name is nonexistent or not a directory: mfvl_utils_mod] 
+[> In path (line 109)
+  In addpath (line 86)
+  In mfvl_lib (line 46)
+  In run_test_01_01_test49_pro1 (line 16)
+  In run_test_49 (line 4)] 
+[Warning: Name is nonexistent or not a directory:
+mfvl_utils_mod/results_treatment] 
+[> In path (line 109)
+  In addpath (line 86)
+  In mfvl_lib (line 47)
+  In run_test_01_01_test49_pro1 (line 16)
+  In run_test_49 (line 4)] 
+[Warning: Name is nonexistent or not a directory: mfvl_utils_mod/plot_mesh] 
+[> In path (line 109)
+  In addpath (line 86)
+  In mfvl_lib (line 48)
+  In run_test_01_01_test49_pro1 (line 16)
+  In run_test_49 (line 4)] 
+[Warning: Name is nonexistent or not a directory: mfvl_run] 
+[> In path (line 109)
+  In addpath (line 86)
+  In mfvl_lib (line 49)
+  In run_test_01_01_test49_pro1 (line 16)
+  In run_test_49 (line 4)] 
+[Warning: Name is nonexistent or not a directory: mfvl_mesh_mod] 
+[> In path (line 109)
+  In addpath (line 86)
+  In mfvl_lib (line 50)
+  In run_test_01_01_test49_pro1 (line 16)
+  In run_test_49 (line 4)] 
+[Warning: Name is nonexistent or not a directory: mfvl_solver_mod] 
+[> In path (line 109)
+  In addpath (line 86)
+  In mfvl_lib (line 51)
+  In run_test_01_01_test49_pro1 (line 16)
+  In run_test_49 (line 4)] 
+[Warning: Name is nonexistent or not a directory: mfvl_quadrat_mod] 
+[> In path (line 109)
+  In addpath (line 86)
+  In mfvl_lib (line 52)
+  In run_test_01_01_test49_pro1 (line 16)
+  In run_test_49 (line 4)] 
+[Warning: Name is nonexistent or not a directory: mfvl_reconst_mod] 
+[> In path (line 109)
+  In addpath (line 86)
+  In mfvl_lib (line 53)
+  In run_test_01_01_test49_pro1 (line 16)
+  In run_test_49 (line 4)] 
+[Warning: Name is nonexistent or not a directory: mfvl_domain_mod] 
+[> In path (line 109)
+  In addpath (line 86)
+  In mfvl_lib (line 54)
+  In run_test_01_01_test49_pro1 (line 16)
+  In run_test_49 (line 4)] 
+[Warning: Name is nonexistent or not a directory: mfvl_model_mod] 
+[> In path (line 109)
+  In addpath (line 86)
+  In mfvl_lib (line 55)
+  In run_test_01_01_test49_pro1 (line 16)
+  In run_test_49 (line 4)] 
+[Warning: Name is nonexistent or not a directory:
+mfvl_model_mod/mfvl_material_list1d] 
+[> In path (line 109)
+  In addpath (line 86)
+  In mfvl_lib (line 56)
+  In run_test_01_01_test49_pro1 (line 16)
+  In run_test_49 (line 4)] 
+     1     1
+
+Error in mfvl_reconst1d/make_lsm_coefs (line 361)
+            global mfvl_conservation_mean_value_der1;
+
+{Error using mfvl_reconst1d/make_lsm_coefs
+Output argument "R" (and maybe others) not assigned during call to
+"mfvl_reconst1d/make_lsm_coefs".
+
+Error in mfvl_reconst1d (line 153)
+            rec.lsm_coefs=make_lsm_coefs(rec,scheme);
+
+
+Error in mfvl_pro_bending/make_point_value_bending (line 135)
+            rec{1}=mfvl_reconst1d(pro.mesh,...
+
+
+Error in mfvl_pro_bending/make_data (line 71)
+            rec_point=make_point_value_bending(pro,degree,weight,cells_data,vertex_data,stencil_size,auto_stencil_opt);
+            
+
+Error in mfvl_pro_bending/make_residual (line 370)
+            [rec_point,rec_none]=make_data(pro,degree,weight,cells_data,vertex_data,stencil_size,auto_stencil_opt);
+            
+
+Error in mfvl_pro_bending/solver (line 424)
+            B=-make_residual(pro,degree,weight,cells_data,stencil_size,force,auto_stencil_opt,S,vertex_data);
+            
+
+Error in mfvl_pro_bending (line 24)
+            pro.u_approx=solver(pro,degree,weight,stencil_size,force,auto_stencil_opt);
+            
+
+Error in run_test_01_01_test49_pro1 (line 58)
+            pro{d}{k}=mfvl_pro_bending(m{k},domain,mod,degree(d),[weight1
+            weight2],stencil_size(d),force,auto_stencil_opt,pro_scheme,flux_scheme);
+            
+
+Error in run_test_49 (line 4)
+run_test_01_01_test49_pro1;
+
+} 

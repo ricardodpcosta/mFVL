@@ -1,0 +1,59 @@
+\mode<presentation>
+
+% Requirement
+\RequirePackage{tikz}
+
+% Boxes
+\usepackage{tcolorbox}
+\usepackage{tikz}
+\definecolor{blocks_color}{RGB}{43, 41, 55}
+\definecolor{items_color}{RGB}{49, 87, 167}
+
+\tcbset{colback=blocks_color!5!white,colframe=items_color}
+
+
+% Settings
+\useinnertheme{texsx}
+\useoutertheme{texsx}
+\usecolortheme{texsx}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{blocks}[rounded][shadow=true]  
+
+\mode<all>\mode<presentation>
+
+% Requirement
+\RequirePackage{tikz}
+
+% Settings
+\useinnertheme{texsx}
+\useoutertheme{texsx}
+\usecolortheme{texsx}
+
+% Words
+\RequirePackage[scaled]{helvet}
+\renewcommand\familydefault{\sfdefault} 
+
+\definecolor{blocks_color}{RGB}{43, 41, 55}
+\setbeamertemplate{blocks}[rounded][shadow=true]  
+\setbeamercolor{block title}{fg=blocks_color,bg=blocks_color!40}
+\setbeamercolor{block body}{fg=blocks_color,bg=blocks_color!10}
+\setbeamercolor{block title alerted}{fg=black,bg=red!60}
+\setbeamercolor{block body alerted}{fg=black,bg=red!20}
+\setbeamercolor{block title example}{fg=blocks_color,bg=blocks_color!40}
+\setbeamercolor{block body example}{fg=blocks_color,bg=blocks_color!10}
+\setbeamerfont{block title}{series=\bfseries,size=\normalsize}
+\setbeamerfont{block body}{series=\normalfont,size=\normalsize}
+
+% Footer with number
+   \addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[gray]{footline}%
+    \hspace{1em}%
+    \insertframenumber/\inserttotalframenumber
+}
+\setbeamercolor{myfootlinetext}{fg=blocks_color}
+
+
+
+\mode<all>
